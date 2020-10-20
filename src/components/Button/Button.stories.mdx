@@ -1,0 +1,68 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+import { Button } from './Button'
+
+<Meta title='MDX/Button' component={Button} />
+
+export const Template = (args) => <Button {...args} />
+
+# Button
+
+This is the primary button. Use it for actions that you want to draw attention to.
+
+<Canvas>
+  <Story
+    name='Primary'
+    args={{
+      primary: true,
+      label: 'Button',
+      onClick: () => console.log('🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+This is the secondary button. You'll use this the rest of the time.
+
+<Canvas>
+  <Story
+    name='Secondary'
+    args={{
+      label: 'Button',
+      onClick: () => console.log('🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+And now some different button sizes:
+
+<Canvas>
+  <Story
+    name='Small Button'
+    args={{
+      label: 'Small',
+      size: 'small',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='Medium Button'
+    args={{
+      label: 'Medium',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='Large Button'
+    args={{
+      label: 'Large',
+      size: 'large'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
