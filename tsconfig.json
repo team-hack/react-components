@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "jsx": "react", // Support jsx in tsx files
+    "module": "esNext", // Specify module code gen
+    "target": "esNext", // Specify ES target version
+    // "rootDir": "src", // Root dir of input files
+    "baseUrl": ".", // Base dir to resolve non-relative module names
+    "moduleResolution": "node", // Determine how modules get resolved
+    "allowJs": true,
+    "strict": false, // Strict type checking
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true, // Allow default imports from modules with no default export
+    "paths": {
+      "*": [
+        "*",
+        "src/*",
+        "src/components/*",
+        "./"
+      ],
+      "@components*": [
+        "src/components*"
+      ],
+    }
+  },
+  "includes": [
+    "./types/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*",
+    ".storybook"
+  ]
+}
