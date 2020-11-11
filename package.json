@@ -60,6 +60,6 @@
     "dist"
   ],
   "dependencies": {
-    "popper.js": "^1.14.3"
+    "@popperjs/core": "^2.5.4"
   }
 }
