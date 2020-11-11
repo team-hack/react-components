@@ -7,7 +7,7 @@
 ## Install
 
 ```bash
-npm install --save @teamhack/components
+npm install
 ```
 
 ## Usage
