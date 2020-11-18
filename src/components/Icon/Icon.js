@@ -1,48 +1,32 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-// import './icon.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSmile } from '@fortawesome/free-solid-svg-icons'
+import '../../../node_modules/@fortawesome/fontawesome-free/css/all.css'
+// import { fontawesomeIconList } from './iconList'
 
-import ErrorBoundary from './ErrorBoundary'
+export const Icon = ({
+  name,
+  size = `1x`,
+  animation = null,
+  rotate = null,
+  border = false
+}) => {
+  const options = (name, size, animation, rotate, border) => {
+    const optionArray = [`fa-${name}`, `fa-${size}`]
+    if (animation) {
+      optionArray.push(`fa-${animation}`)
+    }
+    if (rotate) {
+      optionArray.push(`fa-${rotate}`)
+    }
+    if (border) {
+      optionArray.push(`fa-border`)
+    }
+    return optionArray.join(` `)
+  }
 
-/**
- * Primary UI component for user interaction
- */
-// export const Icon = ({ name, size, animation, weight, ...props }) => {
-//   return <FontAwesomeIcon icon={name} size={size} {...props} />
-// }
-
-export const Icon = ({ name, size }) => {
-  // const capName = name.ChartAt(0).toUpperCase() + name.slice(1)
-  const MyLazyLoaded = React.lazy(() => {
-    // console.log('debug')
-    // console.log(name)
-    // console.log(size)
-    import('@fortawesome/free-solid-svg-icons/' + name + '.js')
-      .then((icon) => {
-        console.log(`fulfilled!`)
-        console.log(`icon name: ${icon.iconName}`)
-        return (
-          <div>
-            hello
-            {/* <FontAwesomeIcon icon={icon} size={size} /> */}
-          </div>
-        )
-      })
-      .catch((err) => console.log(err))
-  })
   return (
     <div>
-      <h1>Hello!</h1>
-      <FontAwesomeIcon icon={faSmile} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <ErrorBoundary>
-          <MyLazyLoaded />
-          <div>Loaded</div>
-        </ErrorBoundary>
-      </Suspense>
+      <i className={`fas ${options(name, size, animation, rotate, border)}`} />
     </div>
   )
 }
@@ -50,10 +34,12 @@ export const Icon = ({ name, size }) => {
 Icon.propTypes = {
   /**
    * What is the icon name/type
+   * name: PropTypes.oneOf(fontawesomeIconList),
+   *
    */
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
   /**
-   * What background color to use
+   * What Size
    */
   size: PropTypes.oneOf([
     'xs',
@@ -73,14 +59,29 @@ Icon.propTypes = {
   /**
    * What animation
    */
-  animation: PropTypes.oneOf(['spin', 'pulse']),
+  animation: PropTypes.oneOf(['spin', 'pulse', null]),
   /**
-   * What weight
+   * What rotation
    */
-  weight: PropTypes.oneOf(['fal', 'far', 'fas', 'fad'])
+  rotate: PropTypes.oneOf([
+    'rotate-90',
+    'rotate-180',
+    'rotate-270',
+    'flip-horizontal',
+    'flip-vertical',
+    'flip-both',
+    null
+  ]),
+  /**
+   * With border?
+   */
+  border: PropTypes.bool
 }
 
 Icon.defaultProps = {
   name: 'coffee',
-  size: '1x'
+  size: '1x',
+  animation: null,
+  rotate: null,
+  border: false
 }
