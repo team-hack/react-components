@@ -1,0 +1,50 @@
+.row {
+    background-color: rgb(182, 204, 243);
+    padding: 5px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-justify-left {
+    justify-content: flex-start;
+}
+
+.flex a {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+}
+
+.center {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+@media (min-width: 640px) {
+    .sm\:center {
+        text-align: center;
+    }
+    .sm\:left {
+        text-align: left;
+
+    }
+    .sm\:right {
+        text-align: right;
+    }
+    .sm\:flex-justify-left {
+        justify-content: flex-start;
+    }
+}
+
+
+@media (min-width: 768px) {}
+@media (min-width: 1024px) {}
+@media (min-width: 1280px) {}
+@media (min-width: 1536px) {}
