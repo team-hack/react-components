@@ -7,43 +7,13 @@ export const Template = (args) => <Divider {...args} />
 
 # Divider
 
-This is the primary Divider. Use it for actions that you want to draw attention to.
-
-<Canvas>
-  <Story
-    name='Primary'
-    args={{
-      primary: true,
-      label: 'Divider',
-      onClick: () => console.log('🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥')
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-This is the secondary Divider. You'll use this the rest of the time.
-
-<Canvas>
-  <Story
-    name='Secondary'
-    args={{
-      label: 'Divider',
-      onClick: () => console.log('🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥')
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
 And now some different Divider sizes:
 
 <Canvas>
   <Story
-    name='Small Divider'
+    name='Thin Divider'
     args={{
-      label: 'Small',
-      size: 'small',
+      thick: 'thin',
     }}
   >
     {Template.bind({})}
@@ -51,16 +21,15 @@ And now some different Divider sizes:
   <Story
     name='Medium Divider'
     args={{
-      label: 'Medium',
+      thick: 'medium',
     }}
   >
     {Template.bind({})}
   </Story>
   <Story
-    name='Large Divider'
+    name='Thick Divider'
     args={{
-      label: 'Large',
-      size: 'large'
+      thick: 'thick'
     }}
   >
     {Template.bind({})}

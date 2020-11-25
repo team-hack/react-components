@@ -1,13 +1,10 @@
 .storybook-divider {
     border: none;
-    background-color: #ccc;
-    color: #ccc;
+    background-color: #9b9b9b;
+    color: #9b9b9b;
     height: 1px;
 }
-.storybook-divider--primary {
-}
-.storybook-divider--secondary {
-}
+
 .storybook-divider--thin {
   border: none;
 }
@@ -19,9 +16,11 @@
 }
 
 .storybook-divider--light {
- background-color: lightgrey; 
+ background-color: rgb(226, 226, 226); 
+ color: rgb(226, 226, 226); 
 }
 
 .storybook-divider--dark {
- background-color: darkslategrey; 
+ background-color: darkslategrey;
+ color: darkslategrey;
 }
