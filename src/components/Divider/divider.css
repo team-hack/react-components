@@ -1,0 +1,26 @@
+.storybook-divider {
+    border: none;
+    background-color: #9b9b9b;
+    color: #9b9b9b;
+    height: 1px;
+}
+
+.storybook-divider--thin {
+  border: none;
+}
+.storybook-divider--medium {
+  border-top: 1px solid;
+}
+.storybook-divider--thick {
+  border-top: 2px solid;
+}
+
+.storybook-divider--light {
+ background-color: rgb(226, 226, 226); 
+ color: rgb(226, 226, 226); 
+}
+
+.storybook-divider--dark {
+ background-color: darkslategrey;
+ color: darkslategrey;
+}
