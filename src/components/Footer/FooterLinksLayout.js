@@ -1,15 +1,13 @@
 import React from 'react';
 
 const FooterLinksLayout = ({ children, position, numberOfColumns = null }) => {
-    let childrenLinks = [];
+    let childrenLinks = React.Children.toArray(children);
 
-    if (numberOfColumns === null) {
-        childrenLinks = children;
-    } else {
+    if (numberOfColumns && numberOfColumns > 1) {
+
         const numberColumns = parseInt(numberOfColumns);
         for (let i = 0; i = children.length; i += numberColumns) {
             childrenLinks = children.slice(i,i+numberColumns);
-            console.log(childrenLinks);
         }
     }
 
@@ -21,7 +19,7 @@ const FooterLinksLayout = ({ children, position, numberOfColumns = null }) => {
                 {
                     React.Children.map(links, (link, i) => {
                         return (
-                            <div className="center">
+                            <div className={ position }>
                                 { link }
                             </div>
                         )
