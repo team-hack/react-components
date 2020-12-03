@@ -1,0 +1,37 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+import { Divider } from './Divider'
+
+<Meta title='MDX/Divider' component={Divider} />
+
+export const Template = (args) => <Divider {...args} />
+
+# Divider
+
+And now some different Divider sizes:
+
+<Canvas>
+  <Story
+    name='Thin Divider'
+    args={{
+      thick: 'thin',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='Medium Divider'
+    args={{
+      thick: 'medium',
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+  <Story
+    name='Thick Divider'
+    args={{
+      thick: 'thick'
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
