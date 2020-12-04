@@ -1,51 +1,54 @@
-import React from 'react'
-import { Story, Meta } from '@storybook/react/types-6-0';
-import  { Card }  from './Card';
-import  { CardImage, CardTitle, ListGroup, ListItem, CardBody, CardHeader, CardFooter, CardImageOverlay }  from './CardImage';
+import React from 'react';
+import  { 
+  Card, 
+  CardImage, 
+  CardTitle, 
+  ListGroup, 
+  ListItem, 
+  CardBody, 
+  CardHeader, 
+  CardFooter, 
+  CardImageOverlay }  from './Card';
 
-export default {
-   
+export default {  
     component: Card,
-    subcomponents: { CardImage },
     title: 'Card',
-  } as Meta;
+    argTypes: {
+      align: {
+        control: {
+          type: 'select',
+          options: ['left', 'center', 'right']
+        },
+      }}
+  }
   
-// const Template = (args) => (<Card {...args}>
-//   <p>helllo</p>
-// </Card>)
 
 
 export const Basic = (args) => <Card {...args}>
 
 <CardImage {...args} />
-
-
- <CardBody center bold>
-  <h4>this is a test</h4>
-  <p>you are the text</p>
+ <CardBody {...args}>
+  <h3>this is a test</h3>
+  <p>you are the text. you are the text. you are the text</p>
   <button>Press Me</button>
-  {/* <CardTitle  title="testing title" /> */}
 </CardBody> 
 </Card>  
 
 Basic.args = {
-    title: `Hey now hey now2`,
-    imageSource: '',
+   align: ['left', 'center', 'right'],
+    imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png',
     width: 300
 }
 
 const Template = (args) => <Card {...args}>
   <div style={{position: 'relative'}}>
   <CardImage {...args} />
-  <CardImageOverlay>
+  <CardImageOverlay position="bottom-right">
     <p>hello</p>
+    <p>how are you</p>
   </CardImageOverlay>
   </div>
  
- 
-  {/* <CardBody>
-    <CardTitle  title="testing title" />
-  </CardBody> */}
   <CardHeader />
   <CardFooter />
   <ListGroup>
@@ -58,7 +61,7 @@ export const HeaderAndFooter = Template.bind({})
 
 HeaderAndFooter.args = {
     title: `I'm the alert`,
-    imageSource: '',
+    imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/sails.png',
     width: 300
 }
 
@@ -66,8 +69,8 @@ HeaderAndFooter.args = {
 export const ImageOverlay = (args) => <Card {...args}>
 <div style={{position: 'relative'}}>
 <CardImage {...args} />
-<CardImageOverlay>
-  <p>hello</p>
+<CardImageOverlay position="bottom-left">
+  <h3>hello</h3>
   <p>over the image</p>
 </CardImageOverlay>
 </div>
@@ -76,7 +79,6 @@ export const ImageOverlay = (args) => <Card {...args}>
   <h4>this is a test</h4>
   <p>you are the text</p>
   <button>Press Me</button>
-  {/* <CardTitle  title="testing title" /> */}
 </CardBody> 
 
 <ListGroup>
@@ -101,6 +103,17 @@ export const List = (args) => <Card {...args}>
 </Card>  
 
 List.args = {
+    title: `Hey now hey now2`
+}
+
+export const ListA = (args) => <Card {...args}>
+
+<CardHeader />
+<CardImage {...args} />
+<CardFooter />
+</Card>  
+
+ListA.args = {
     title: `Hey now hey now2`
 }
 

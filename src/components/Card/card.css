@@ -25,15 +25,17 @@ ul {
 }
 
 .card-body {
-  padding: 10px;
+  padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
 .list-item {
   margin: 0;
-  border-top: 1px solid #d3d3d3;
-  /* border-bottom: 1px solid grey; */
   list-style: none;
   padding: 10px;
+}
+
+.list-item:not(:first-child) {
+  border-top: 1px solid #d3d3d3;
 }
 
 .image {
@@ -45,28 +47,19 @@ ul {
 
 .card-header {
   background-color: #fafafa;
-  /* position: absolute;
-  top: 0;
-  
-  /* padding: 1rem; */
   order: -1;
   padding: 1rem;
 }
 
 .card-footer {
   background-color: #fafafa;
-  /* position: absolute;
-  top: 0;
-  
-  /* padding: 1rem; */
+  border-top: 1px solid #d3d3d3;
   order: 100;
   padding: 1rem;
 }
 
 .image-overlay {
   position: absolute;
-  top: 5%;
-  left: 5%;
   z-index: 10;
   color: white;
 }
@@ -85,4 +78,24 @@ ul {
 
 .bold {
   font-weight: 800;
+}
+
+.top-left {
+  top: 5% !important;
+  left: 5% !important;
+}
+
+.top-right {
+  top: 5% !important;
+  right: 5% !important;
+}
+
+.bottom-left {
+  bottom: 5% !important;
+  left: 5% !important;
+}
+
+.bottom-right {
+  bottom: 5% !important;
+  right: 5% !important;
 }
