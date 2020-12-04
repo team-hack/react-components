@@ -5,7 +5,22 @@ interface CardProps {
     title?: string;
     children?: any;
     imageSource?: string;
-    center?: string
+    center?: boolean;
+    left?: boolean;
+    bold?: boolean;
+}
+
+function populateStyleString(props){
+  let str = '';
+  console.log(props)
+  Object.keys(props).map(item => str += `${item} `)
+  return str;
+  // for(let item in props){
+  //   switch(item){
+  //     cas
+  //   }
+  // }
+
 }
 
 
@@ -36,9 +51,12 @@ const ListGroup = ({title, children }: CardProps): JSX.Element => (
     <li className="list-item">{title}</li>
     )
 
-    const CardBody = ({children }: CardProps): JSX.Element => (
-      <div className="card-body">{children}</div>
-      )
+    const CardBody = ({children, ...props }: CardProps): JSX.Element => {
+      let styleStr = populateStyleString(props)
+      return (
+
+      <div className={`card-body ${styleStr}`} >{children}</div>
+      )}
 
       const CardHeader = ({title, center }: CardProps): JSX.Element => {
       return(<div className="card-header" >Test header</div>)

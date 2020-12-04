@@ -5,12 +5,11 @@ ul {
 
 .card {
   width: 300px;
-  border: 1px solid grey;
+  border: 1px solid #d3d3d3;
   border-radius: 4px;
-  /* padding: 10px; */
-  /* height: 200px; */
   display: flex;
   flex-direction: column;
+  font-family: Helvetica, sans-serif !important;
 }
 
 .card-image {
@@ -31,7 +30,7 @@ ul {
 
 .list-item {
   margin: 0;
-  border-top: 1px solid grey;
+  border-top: 1px solid #d3d3d3;
   /* border-bottom: 1px solid grey; */
   list-style: none;
   padding: 10px;
@@ -45,26 +44,45 @@ ul {
 }
 
 .card-header {
-  background-color: blue;
+  background-color: #fafafa;
   /* position: absolute;
   top: 0;
   
   /* padding: 1rem; */
   order: -1;
+  padding: 1rem;
 }
 
 .card-footer {
-  background-color: red;
+  background-color: #fafafa;
   /* position: absolute;
   top: 0;
   
   /* padding: 1rem; */
   order: 100;
+  padding: 1rem;
 }
 
 .image-overlay {
   position: absolute;
-  top: 0;
+  top: 5%;
+  left: 5%;
   z-index: 10;
   color: white;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.bold {
+  font-weight: 800;
 }
