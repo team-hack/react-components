@@ -1,7 +1,8 @@
 import React from 'react';
 import  { 
   Card, 
-  CardImage, 
+  CardImage,
+  CardImageContainer,
   CardTitle, 
   ListGroup, 
   ListItem, 
@@ -41,19 +42,20 @@ Basic.args = {
 }
 
 const Template = (args) => <Card {...args}>
-  <div style={{position: 'relative'}}>
+  <CardImageContainer>
   <CardImage {...args} />
   <CardImageOverlay position="bottom-right">
     <p>hello</p>
     <p>how are you</p>
   </CardImageOverlay>
-  </div>
+  </CardImageContainer>
+ 
  
   <CardHeader />
   <CardFooter />
   <ListGroup>
-    <ListItem title="item 1" />
-    <ListItem title="item 2" />
+    <ListItem text="item 1" />
+    <ListItem text="item 2" />
   </ListGroup>
 </Card>  
 
@@ -82,8 +84,8 @@ export const ImageOverlay = (args) => <Card {...args}>
 </CardBody> 
 
 <ListGroup>
-  <ListItem title="item 1" />
-  <ListItem title="item 2" />
+  <ListItem text="item 1" />
+  <ListItem text="item 2" />
 </ListGroup>
 </Card>  
 
@@ -96,9 +98,9 @@ export const List = (args) => <Card {...args}>
 
 
 <ListGroup>
-  <ListItem title="item 1" />
-  <ListItem title="item 2" />
-  <ListItem title="item 3" />
+  <ListItem text="item 1" />
+  <ListItem text="item 2" />
+  <ListItem text="item 3" />
 </ListGroup>
 </Card>  
 
@@ -108,9 +110,9 @@ List.args = {
 
 export const ListA = (args) => <Card {...args}>
 
-<CardHeader />
+<CardHeader text="Header"/>
 <CardImage {...args} />
-<CardFooter />
+<CardFooter text="Footer"/>
 </Card>  
 
 ListA.args = {

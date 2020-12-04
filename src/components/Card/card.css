@@ -1,8 +1,10 @@
+/* reset conflicting styles */
 ul {
   margin: 0 !important;
   padding: 0 !important;
 }
 
+/* main card */
 .card {
   width: 300px;
   border: 1px solid #d3d3d3;
@@ -12,6 +14,7 @@ ul {
   font-family: Helvetica, sans-serif !important;
 }
 
+/* image styles */
 .card-image {
   width: 100%;
   background-color: grey;
@@ -19,6 +22,21 @@ ul {
   border: none;
   position: relative;
 }
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.image-overlay {
+  position: absolute;
+  z-index: 10;
+  color: white;
+}
+
+/* styles for basic components */
 
 .card-title {
   font-size: 20px;
@@ -38,13 +56,6 @@ ul {
   border-top: 1px solid #d3d3d3;
 }
 
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  overflow: hidden;
-}
-
 .card-header {
   background-color: #fafafa;
   order: -1;
@@ -58,11 +69,7 @@ ul {
   padding: 1rem;
 }
 
-.image-overlay {
-  position: absolute;
-  z-index: 10;
-  color: white;
-}
+/* styles that add specific attributes to existing elements */
 
 .center {
   text-align: center;
