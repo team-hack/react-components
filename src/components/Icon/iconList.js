@@ -1616,4 +1616,6 @@ const brands = [
   'zhihu'
 ]
 
-export const fontawesomeIconList = solid.concat(regular)
+const exportIcons = solid.concat(regular, brands)
+
+export default exportIcons
