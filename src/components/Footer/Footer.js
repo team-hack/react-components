@@ -8,9 +8,9 @@ import FooterDisclaimer from './FooterDisclaimer';
 
 import './Footer.css';
 
-const Footer = () => {
+const Footer = ({ theme }) => {
     return (
-        <footer>
+        <footer className={theme}>
             <FooterBrand position="center" />
             <FooterLinksLayout position="center" numberOfColumns="3">
                 <FooterLinks />
