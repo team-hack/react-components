@@ -1,0 +1,108 @@
+/* reset conflicting styles */
+ul {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* main card */
+.card {
+  width: 300px;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica, sans-serif !important;
+}
+
+/* image styles */
+.card-image {
+  width: 100%;
+  background-color: grey;
+  height: 200px;
+  border: none;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+.image-overlay {
+  position: absolute;
+  z-index: 10;
+  color: white;
+}
+
+/* styles for basic components */
+
+.card-title {
+  font-size: 20px;
+}
+
+.card-body {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.list-item {
+  margin: 0;
+  list-style: none;
+  padding: 10px;
+}
+
+.list-item:not(:first-child) {
+  border-top: 1px solid #d3d3d3;
+}
+
+.card-header {
+  background-color: #fafafa;
+  order: -1;
+  padding: 1rem;
+}
+
+.card-footer {
+  background-color: #fafafa;
+  border-top: 1px solid #d3d3d3;
+  order: 100;
+  padding: 1rem;
+}
+
+/* styles that add specific attributes to existing elements */
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.bold {
+  font-weight: 800;
+}
+
+.top-left {
+  top: 5% !important;
+  left: 5% !important;
+}
+
+.top-right {
+  top: 5% !important;
+  right: 5% !important;
+}
+
+.bottom-left {
+  bottom: 5% !important;
+  left: 5% !important;
+}
+
+.bottom-right {
+  bottom: 5% !important;
+  right: 5% !important;
+}
