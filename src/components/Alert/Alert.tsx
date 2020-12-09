@@ -5,7 +5,7 @@ interface AlertProps {
     title?: string;
 }
 
-export const Alert = ({title}: AlertProps): JSX.Element => (
-    <div className={`alert`}>{title ? title : 'Hello World'}</div>
+export const Alert = ({title, ...props}: AlertProps): JSX.Element => (
+    <div className={`alert`} {...props}>{title ? title : 'Hello World'}</div>
 )
 
