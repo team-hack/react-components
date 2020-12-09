@@ -6,7 +6,7 @@ interface AlertProps {
 }
 
 const Alert = ({title}: AlertProps): JSX.Element => (
-    <div className={`alert`}>{title ? title : 'Hello World'}</div>
+    <div className={`alert`}>{title ? title : 'Hellos World'}</div>
 )
 
 export default Alert
