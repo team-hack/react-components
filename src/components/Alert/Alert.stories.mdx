@@ -1,0 +1,23 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+import { Alert } from './Alert'
+
+<Meta title='MDX/Alert' component={Alert} />
+
+export const Template = (args) => <Alert {...args} />
+
+# Alert
+
+A basic alert
+
+<Canvas>
+  <Story
+    name='Primary Alert'
+    args={{
+      title: 'Primary Alert',
+      onClick: () => console.log('❄❄❄❄❄❄❄❄❄❄❄❄❄❄')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
