@@ -23,7 +23,8 @@
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token i3g5k5ht3"
   },
   "peerDependencies": {
     "react": "^16.0.0"
@@ -37,6 +38,7 @@
     "@storybook/react": "^6.0.26",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.1.0",
+    "chromatic": "^5.4.0",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.7.0",
