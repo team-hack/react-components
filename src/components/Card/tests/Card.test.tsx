@@ -1,3 +1,6 @@
+import React from 'react'
+import { render, screen } from '@testing-library/react'
+import '@testing-library/jest-dom/extend-expect'
 import {
   Card,
   CardBody,
@@ -7,9 +10,6 @@ import {
   CardImageOverlay,
   CardImageContainer
 } from '../Card'
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
 
 describe('Card component', () => {
   test('should have default width of 300px', () => {
