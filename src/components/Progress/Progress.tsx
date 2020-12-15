@@ -40,6 +40,8 @@ const Progress = ({ children, height }: ProgressProps): JSX.Element => {
   let heightRule = ''
   if (typeof height === 'string') {
     heightRule = height
+  } else {
+    heightRule = '25px'
   }
   return (
     <ErrorBoundary>
@@ -57,8 +59,8 @@ const ProgressBar = ({
   animated,
   width
 }: ProgressBarProps): JSX.Element => {
-  let widthRule = '25%'
-  let colorRule = 'fff'
+  let widthRule = ''
+  let colorRule = ''
   let additionalClass = ''
 
   if (typeof color === 'string') {
@@ -69,7 +71,11 @@ const ProgressBar = ({
   }
 
   if (typeof width === 'string') {
+    console.log('oine')
     widthRule = width
+  } else {
+    console.log('tow')
+    widthRule = '25%'
   }
 
   if (
@@ -79,6 +85,8 @@ const ProgressBar = ({
   ) {
     additionalClass += 'animate '
   }
+
+  console.log('with rule', widthRule)
 
   return (
     <ErrorBoundary>
