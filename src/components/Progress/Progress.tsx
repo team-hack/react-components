@@ -37,12 +37,8 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
 
 const Progress = ({ children, height }: ProgressProps): JSX.Element => {
   console.log(children)
-  let heightRule = ''
-  if (typeof height === 'string') {
-    heightRule = height
-  } else {
-    heightRule = '25px'
-  }
+  let heightRule = height && typeof height === 'string' ? height : '25px'
+
   return (
     <ErrorBoundary>
       <div className='progress' style={{ height: heightRule }}>
@@ -59,23 +55,13 @@ const ProgressBar = ({
   animated,
   width
 }: ProgressBarProps): JSX.Element => {
-  let widthRule = ''
-  let colorRule = ''
+  let widthRule = width && typeof width === 'string' ? width : '25%'
+  let colorRule =
+    color && typeof color === 'string' ? color : 'rgb(43, 194, 83)'
   let additionalClass = ''
 
-  if (typeof color === 'string') {
-    colorRule = color
-  }
   if (typeof striped === 'string' && striped === 'true') {
     additionalClass += 'progress-bar-striped '
-  }
-
-  if (typeof width === 'string') {
-    console.log('oine')
-    widthRule = width
-  } else {
-    console.log('tow')
-    widthRule = '25%'
   }
 
   if (
@@ -86,13 +72,11 @@ const ProgressBar = ({
     additionalClass += 'animate '
   }
 
-  console.log('with rule', widthRule)
-
   return (
     <ErrorBoundary>
       <div
         className={`progress-bar ${additionalClass}`}
-        style={{ width: widthRule, backgroundColor: color }}
+        style={{ width: widthRule, backgroundColor: colorRule }}
       >
         <span>{children}</span>
       </div>
