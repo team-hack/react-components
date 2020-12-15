@@ -23,16 +23,16 @@ export default {
 
 export const Basic = (args) => (
   <Progress {...args}>
-    <ProgressBar {...args} style='width: 85%'>
-      {args.width}
-    </ProgressBar>
+    <ProgressBar {...args}>{args.label}</ProgressBar>
   </Progress>
 )
 
 Basic.args = {
-  striped: 'false',
-  width: '85%',
-  animated: 'false'
+  striped: false,
+  width: '25%',
+  animated: 'false',
+  label: '',
+  color: 'rgb(43, 194, 83)'
 }
 
 export const Thin = (args) => (

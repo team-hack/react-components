@@ -53,10 +53,10 @@ const ProgressBar = ({
   animated,
   width
 }: ProgressProps): JSX.Element => {
-  let widthRule = ''
+  let widthRule = '25%'
   let colorRule = 'fff'
   let additionalClass = ''
-  let widthCompleted = '25%'
+
   // if (typeof style === 'string') {
   //   widthRule = style.split(' ')[1]
   // }
@@ -65,10 +65,15 @@ const ProgressBar = ({
   //   widthRule = style.split(' ')[1]
   // }
   if (typeof color === 'string') {
-    colorRule = style.split(' ')[1]
+    colorRule = color
   }
   if (typeof striped === 'string' && striped === 'true') {
     additionalClass += 'progress-bar-striped '
+  }
+
+  if (typeof width === 'string') {
+    console.log(';;w', width)
+    widthRule = width
   }
 
   if (typeof width === 'string' && striped === 'true') {
@@ -92,7 +97,7 @@ const ProgressBar = ({
       className={`progress-bar ${additionalClass}`}
       style={{ width: widthRule, backgroundColor: color }}
     >
-      {children}
+      <span>{children}</span>
     </div>
   )
 }
