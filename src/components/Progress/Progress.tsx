@@ -36,12 +36,15 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
 }
 
 const Progress = ({ children, height }: ProgressProps): JSX.Element => {
-  console.log(children)
+  let multipleStyle = children.length > 1 ? 'flex' : 'block'
   let heightRule = height && typeof height === 'string' ? height : '25px'
 
   return (
     <ErrorBoundary>
-      <div className='progress' style={{ height: heightRule }}>
+      <div
+        className='progress'
+        style={{ height: heightRule, display: multipleStyle }}
+      >
         {children}
       </div>
     </ErrorBoundary>

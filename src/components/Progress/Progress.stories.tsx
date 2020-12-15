@@ -24,6 +24,7 @@ export default {
 export const Basic = (args) => (
   <Progress {...args}>
     <ProgressBar {...args}>{args.label}</ProgressBar>
+    <ProgressBar {...args}>{args.label}</ProgressBar>
   </Progress>
 )
 
@@ -62,6 +63,27 @@ AllOptions.args = {
   width: '25%',
   animated: 'true',
   label: 'completed: 25%',
+  color: 'rgb(43, 194, 83)',
+  height: '25px'
+}
+
+export const Multiple = (args) => (
+  <Progress {...args}>
+    <ProgressBar {...args} color='red'>
+      {args.label}
+    </ProgressBar>
+    <ProgressBar {...args} color='orange'>
+      {args.label}
+    </ProgressBar>
+    <ProgressBar {...args}>{args.label}</ProgressBar>
+  </Progress>
+)
+
+Multiple.args = {
+  striped: 'false',
+  width: '25%',
+  animated: 'false',
+  label: '',
   color: 'rgb(43, 194, 83)',
   height: '25px'
 }
