@@ -28,11 +28,12 @@ export const Basic = (args) => (
 )
 
 Basic.args = {
-  striped: false,
+  striped: 'false',
   width: '25%',
   animated: 'false',
   label: '',
-  color: 'rgb(43, 194, 83)'
+  color: 'rgb(43, 194, 83)',
+  height: '25px'
 }
 
 export const Thin = (args) => (
@@ -43,9 +44,24 @@ export const Thin = (args) => (
 
 Thin.args = {
   height: '3px',
-  striped: false,
+  striped: 'false',
   width: '25%',
   animated: 'false',
   label: '',
   color: 'rgb(43, 194, 83)'
+}
+
+export const AllOptions = (args) => (
+  <Progress {...args}>
+    <ProgressBar {...args}>{args.label}</ProgressBar>
+  </Progress>
+)
+
+AllOptions.args = {
+  striped: 'true',
+  width: '25%',
+  animated: 'true',
+  label: 'completed: 25%',
+  color: 'rgb(43, 194, 83)',
+  height: '25px'
 }
