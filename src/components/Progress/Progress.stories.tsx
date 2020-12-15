@@ -36,7 +36,16 @@ Basic.args = {
 }
 
 export const Thin = (args) => (
-  <Progress {...args} style='height: 3px !important'>
-    <ProgressBar {...args} style='width: 35%' />
+  <Progress {...args}>
+    <ProgressBar {...args} />
   </Progress>
 )
+
+Thin.args = {
+  height: '3px',
+  striped: false,
+  width: '25%',
+  animated: 'false',
+  label: '',
+  color: 'rgb(43, 194, 83)'
+}
