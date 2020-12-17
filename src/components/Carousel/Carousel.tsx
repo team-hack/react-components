@@ -30,9 +30,10 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
 
 const Carousel = ({ children }: CarouselProps): JSX.Element => {
   const [count, setCount] = useState(0)
+  const [currentSlide, setCurrentSlide] = useState(1)
 
-  function doSomething() {
-    console.log('doSomething called by child with value:')
+  function doSomething(n) {
+    setCurrentSlide(currentSlide + n)
   }
 
   useEffect(() => {
@@ -50,15 +51,20 @@ const Carousel = ({ children }: CarouselProps): JSX.Element => {
         className='carousel-container'
         // style={{ height: heightRule, display: multipleStyle }}
       >
-        {React.Children.map(children, (child) => {
+        {React.Children.map(children, (child, i) => {
           if (child) {
+            let showSlide = false
+            if (currentSlide === i) {
+              showSlide = true
+            }
             const childProps = child.props
             const { onClick, value } = childProps
             return React.cloneElement(child, {
               ...child.props,
-              onClick: () => {
-                doSomething()
-              }
+              onClick: (n) => {
+                doSomething(n)
+              },
+              showSlide
             })
           }
           return null
@@ -70,10 +76,11 @@ const Carousel = ({ children }: CarouselProps): JSX.Element => {
 
 const CarouselItem = ({
   children,
-  imageSource
+  imageSource,
+  showSlide
 }: CarouselProps): JSX.Element => {
   return (
-    <div className='slide fade'>
+    <div className={`fade ${showSlide ? 'show' : 'hide'}`}>
       {/* <div class='numbertext'>1 / 3</div> */}
 
       <img src={imageSource} style={{ width: '100%' }} />
@@ -88,12 +95,11 @@ const CarouselControl = ({
   ...props
 }: CarouselProps): JSX.Element => {
   function clickPrev() {
-    console.log('click prev')
-    onClick()
+    onClick(-1)
   }
 
   function clickNext() {
-    console.log('click next')
+    onClick(1)
   }
 
   return (

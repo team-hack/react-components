@@ -12,7 +12,14 @@
 }
 
 .slide {
-  /* display: none; */
+  display: none;
+}
+
+.show {
+  display: block;
+}
+.hide {
+  display: none;
 }
 
 .prev,
