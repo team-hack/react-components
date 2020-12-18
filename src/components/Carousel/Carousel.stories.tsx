@@ -21,7 +21,8 @@ export default {
 }
 
 export const Basic = (args) => (
-  <Carousel {...args} auto={true}>
+  // <Carousel {...args} auto={true}>
+  <Carousel {...args}>
     {/* <ProgressBar {...args}>{args.label}</ProgressBar>
     <ProgressBar {...args}>{args.label}</ProgressBar> */}
     <CarouselItem imageSource='https://homepages.cae.wisc.edu/~ece533/images/monarch.png'></CarouselItem>

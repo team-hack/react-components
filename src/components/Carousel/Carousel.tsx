@@ -63,12 +63,14 @@ const Carousel = ({ children, auto }: CarouselProps): JSX.Element => {
     setCount(counter)
   }, [])
 
-  // useEffect(() => {
-  //   const listener = setInterval(() => doSomething(1), 3000)
-  //   return () => {
-  //     clearInterval(listener) //This is important
-  //   }
-  // })
+  useEffect(() => {
+    if (auto) {
+      const listener = setInterval(() => doSomething(1), 3000)
+      return () => {
+        clearInterval(listener) //This is important
+      }
+    }
+  })
   console.log(count)
 
   return (
@@ -115,7 +117,10 @@ const CarouselItem = ({
       {/* <div class='numbertext'>1 / 3</div> */}
 
       <img className='img' src={imageSource} style={{ width: '100%' }} />
-      <div className='text'>Caption Text</div>
+      <div className='text'>
+        <h5>Caption title</h5>
+        <p>caption text</p>
+      </div>
     </div>
   )
 }
@@ -174,7 +179,9 @@ const CarouselIndicators = ({
       style={{
         textAlign: 'center',
         position: 'absolute',
-        left: '50%',
+        left: 0,
+        right: 0,
+        margin: 'auto',
         bottom: '20px'
       }}
     >
