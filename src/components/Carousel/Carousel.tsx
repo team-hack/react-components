@@ -113,15 +113,15 @@ const CarouselItem = ({
   showSlide
 }: CarouselProps): JSX.Element => {
   return (
-    <div className={`fade ${showSlide ? 'show' : 'hide'}`}>
-      {/* <div class='numbertext'>1 / 3</div> */}
+    // <div className={`fade ${showSlide ? 'show' : 'hide'}`}>
+    //   {/* <div class='numbertext'>1 / 3</div> */}
 
-      <img className='img' src={imageSource} style={{ width: '100%' }} />
-      <div className='text'>
-        <h5>Caption title</h5>
-        <p>caption text</p>
-      </div>
-    </div>
+    //   <div className='text'>
+    //     <h5>Caption title</h5>
+    //     <p>caption text</p>
+    //   </div>
+    // </div>
+    <div className={`fade ${showSlide ? 'show' : 'hide'}`}>{children}</div>
   )
 }
 
@@ -193,4 +193,18 @@ const CarouselIndicators = ({
   )
 }
 
-export { Carousel, CarouselItem, CarouselControl, CarouselIndicators }
+const CarouselImage = ({
+  children,
+  imageSource,
+  showSlide
+}: CarouselProps): JSX.Element => {
+  return <img className='img' src={imageSource} style={{ width: '100%' }} />
+}
+
+export {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators,
+  CarouselImage
+}
