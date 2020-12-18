@@ -201,10 +201,19 @@ const CarouselImage = ({
   return <img className='img' src={imageSource} style={{ width: '100%' }} />
 }
 
+const CarouselCaption = ({
+  children,
+  imageSource,
+  showSlide
+}: CarouselProps): JSX.Element => {
+  return <div className='text'>{children}</div>
+}
+
 export {
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselImage
+  CarouselImage,
+  CarouselCaption
 }

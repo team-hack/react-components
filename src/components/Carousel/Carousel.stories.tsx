@@ -4,7 +4,8 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselImage
+  CarouselImage,
+  CarouselCaption
 } from './Carousel'
 
 export default {
@@ -28,6 +29,10 @@ export const Basic = (args) => (
     <ProgressBar {...args}>{args.label}</ProgressBar> */}
     <CarouselItem>
       <CarouselImage imageSource='https://homepages.cae.wisc.edu/~ece533/images/monarch.png'></CarouselImage>
+      <CarouselCaption>
+        <h2>hello</h2>
+        <p>goodbye</p>
+      </CarouselCaption>
     </CarouselItem>
     <CarouselItem>
       <CarouselImage imageSource='https://homepages.cae.wisc.edu/~ece533/images/sails.png'></CarouselImage>
