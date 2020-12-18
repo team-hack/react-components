@@ -22,6 +22,13 @@
   display: none;
 }
 
+.img {
+  /* max-height: 400px; */
+  height: 350px;
+  object-fit: cover;
+  /* fill | contain | cover | none | scale-down */
+}
+
 .prev,
 .next {
   cursor: pointer;

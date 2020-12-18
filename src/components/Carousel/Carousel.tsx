@@ -28,7 +28,7 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   }
 }
 
-const Carousel = ({ children }: CarouselProps): JSX.Element => {
+const Carousel = ({ children, auto }: CarouselProps): JSX.Element => {
   const [count, setCount] = useState(0)
   const [currentSlide, setCurrentSlide] = useState(1)
 
@@ -46,10 +46,10 @@ const Carousel = ({ children }: CarouselProps): JSX.Element => {
     }
   }
 
-  // function doSomething2(n) {
-  //   console.log('doing something 2', n)
-  //   setCurrentSlide(n)
-  // }
+  function imageSelector(n) {
+    console.log('doing something 2', n)
+    setCurrentSlide(n)
+  }
 
   useEffect(() => {
     console.log(children)
@@ -62,7 +62,15 @@ const Carousel = ({ children }: CarouselProps): JSX.Element => {
       })
     setCount(counter)
   }, [])
+
+  // useEffect(() => {
+  //   const listener = setInterval(() => doSomething(1), 3000)
+  //   return () => {
+  //     clearInterval(listener) //This is important
+  //   }
+  // })
   console.log(count)
+
   return (
     <ErrorBoundary>
       <div
@@ -82,8 +90,8 @@ const Carousel = ({ children }: CarouselProps): JSX.Element => {
               onClick: (n) => {
                 doSomething(n)
               },
-              second: (n) => {
-                doSomething2(n)
+              selectImage: (n) => {
+                imageSelector(n)
               },
               showSlide,
               count,
@@ -106,7 +114,7 @@ const CarouselItem = ({
     <div className={`fade ${showSlide ? 'show' : 'hide'}`}>
       {/* <div class='numbertext'>1 / 3</div> */}
 
-      <img src={imageSource} style={{ width: '100%' }} />
+      <img className='img' src={imageSource} style={{ width: '100%' }} />
       <div className='text'>Caption Text</div>
     </div>
   )
@@ -141,21 +149,23 @@ const CarouselIndicators = ({
   children,
   imageSource,
   count,
-  currentSlide
-}: // second
-CarouselProps): JSX.Element => {
+  currentSlide,
+  selectImage
+}: CarouselProps): JSX.Element => {
   console.log('count in indicator', count)
   let elementArray = []
   for (let i = 0; i < count; i++) {
     if (i === currentSlide) {
       elementArray.push(
-        // onClick={() => second(i)}
-        <span key={i} className='dot active'></span>
+        <span
+          onClick={() => selectImage(i)}
+          key={i}
+          className='dot active'
+        ></span>
       )
     } else {
       elementArray.push(
-        //onClick={() => second(i)}
-        <span key={i} className='dot'></span>
+        <span key={i} onClick={() => selectImage(i)} className='dot'></span>
       )
     }
   }
