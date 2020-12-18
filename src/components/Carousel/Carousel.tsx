@@ -33,16 +33,34 @@ const Carousel = ({ children }: CarouselProps): JSX.Element => {
   const [currentSlide, setCurrentSlide] = useState(1)
 
   function doSomething(n) {
-    setCurrentSlide(currentSlide + n)
+    console.log('this is n', n, currentSlide, count)
+    if (n + currentSlide >= count) {
+      console.log('greater than count')
+      setCurrentSlide(0)
+    } else if (n + currentSlide < 0) {
+      console.log('less than 1', count)
+      setCurrentSlide(count - 1)
+    } else {
+      console.log('in range')
+      setCurrentSlide(currentSlide + n)
+    }
   }
 
+  // function doSomething2(n) {
+  //   console.log('doing something 2', n)
+  //   setCurrentSlide(n)
+  // }
+
   useEffect(() => {
+    console.log(children)
+    let counter = 0
     children &&
-      children.forEach((child) => {
+      children.forEach((child, i) => {
         if (child.type === CarouselItem) {
-          setCount(count + 1)
+          counter++
         }
       })
+    setCount(counter)
   }, [])
   console.log(count)
   return (
@@ -64,7 +82,12 @@ const Carousel = ({ children }: CarouselProps): JSX.Element => {
               onClick: (n) => {
                 doSomething(n)
               },
-              showSlide
+              second: (n) => {
+                doSomething2(n)
+              },
+              showSlide,
+              count,
+              currentSlide
             })
           }
           return null
@@ -114,40 +137,43 @@ const CarouselControl = ({
   )
 }
 
-// const ProgressBar = ({
-//   children,
-//   color,
-//   striped,
-//   animated,
-//   width
-// }: ProgressBarProps): JSX.Element => {
-//   let widthRule = width && typeof width === 'string' ? width : '25%'
-//   let colorRule =
-//     color && typeof color === 'string' ? color : 'rgb(43, 194, 83)'
-//   let additionalClass = ''
+const CarouselIndicators = ({
+  children,
+  imageSource,
+  count,
+  currentSlide
+}: // second
+CarouselProps): JSX.Element => {
+  console.log('count in indicator', count)
+  let elementArray = []
+  for (let i = 0; i < count; i++) {
+    if (i === currentSlide) {
+      elementArray.push(
+        // onClick={() => second(i)}
+        <span key={i} className='dot active'></span>
+      )
+    } else {
+      elementArray.push(
+        //onClick={() => second(i)}
+        <span key={i} className='dot'></span>
+      )
+    }
+  }
+  return (
+    <div
+      style={{
+        textAlign: 'center',
+        position: 'absolute',
+        left: '50%',
+        bottom: '20px'
+      }}
+    >
+      {elementArray}
+      {/* <span className='dot'></span>
+      <span className='dot'></span>
+      <span className='dot'></span> */}
+    </div>
+  )
+}
 
-//   if (typeof striped === 'string' && striped === 'true') {
-//     additionalClass += 'progress-bar-striped '
-//   }
-
-//   if (
-//     typeof animated === 'string' &&
-//     striped === 'true' &&
-//     animated === 'true'
-//   ) {
-//     additionalClass += 'animate '
-//   }
-
-//   return (
-//     <ErrorBoundary>
-//       <div
-//         className={`progress-bar ${additionalClass}`}
-//         style={{ width: widthRule, backgroundColor: colorRule }}
-//       >
-//         <span>{children}</span>
-//       </div>
-//     </ErrorBoundary>
-//   )
-// }
-
-export { Carousel, CarouselItem, CarouselControl }
+export { Carousel, CarouselItem, CarouselControl, CarouselIndicators }

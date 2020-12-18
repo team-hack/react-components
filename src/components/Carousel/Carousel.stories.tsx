@@ -1,5 +1,10 @@
 import React from 'react'
-import { Carousel, CarouselItem, CarouselControl } from './Carousel'
+import {
+  Carousel,
+  CarouselItem,
+  CarouselControl,
+  CarouselIndicators
+} from './Carousel'
 
 export default {
   component: Carousel,
@@ -21,7 +26,10 @@ export const Basic = (args) => (
     <ProgressBar {...args}>{args.label}</ProgressBar> */}
     <CarouselItem imageSource='https://homepages.cae.wisc.edu/~ece533/images/monarch.png'></CarouselItem>
     <CarouselItem imageSource='https://homepages.cae.wisc.edu/~ece533/images/sails.png'></CarouselItem>
+    <CarouselItem imageSource='https://homepages.cae.wisc.edu/~ece533/images/cat.png'></CarouselItem>
+    <CarouselItem imageSource='https://homepages.cae.wisc.edu/~ece533/images/pool.png'></CarouselItem>
     <CarouselControl />
+    <CarouselIndicators />
   </Carousel>
 )
 
