@@ -1,16 +1,15 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import './list.css'
 
-{/* <List listItems={[]} isOrdered = {false}>  */}
-
-export const List = (props) => {
+export const List = ({isOrdered, listItems, ...props}) => {
 
     if (isOrdered) {
       return (
         <ol>
-        {props.listItems.map((listItem, i) => {
+        {listItems.map((listItem, i) => {
           return (
-            <li>{listItem}</li>
+            <li className={`storybook-li`}>{listItem}</li>
           )
         }) }
       </ol>
@@ -18,12 +17,21 @@ export const List = (props) => {
     }
       return (
       <ul>
-      {props.listItems.map((listItem, i) => {
+      {listItems.map((listItem, i) => {
         return (
-          <li>{listItem}</li>
+          <li className={`storybook-li`}>{listItem}</li>
         )
       }) }
     </ul>
 
     )
   } 
+
+  List.defaultProps = {
+    isOrdered: false,
+    listItems: [1,2,3],
+  }
+
+
+  // create li linked item
+  // create nested list
