@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Card,
   CardImage,
@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardFooter,
   CardImageOverlay
-} from './Card'
+} from './Card';
 
 export default {
   component: Card,
@@ -23,7 +23,7 @@ export default {
       }
     }
   }
-}
+};
 
 export const Basic = (args) => (
   <Card {...args}>
@@ -34,13 +34,13 @@ export const Basic = (args) => (
       <button>Press Me</button>
     </CardBody>
   </Card>
-)
+);
 
 Basic.args = {
   align: ['left', 'center', 'right'],
   imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png',
   width: '300'
-}
+};
 
 export const HeaderAndFooter = (args) => (
   <Card {...args}>
@@ -59,13 +59,13 @@ export const HeaderAndFooter = (args) => (
       <ListItem text='item 2' {...args} />
     </ListGroup>
   </Card>
-)
+);
 
 HeaderAndFooter.args = {
   align: ['left', 'center', 'right'],
   imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/sails.png',
   width: '300'
-}
+};
 
 export const ImageOverlay = (args) => (
   <Card {...args}>
@@ -88,12 +88,12 @@ export const ImageOverlay = (args) => (
       <ListItem text='item 2' />
     </ListGroup>
   </Card>
-)
+);
 
 ImageOverlay.args = {
   imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/sails.png',
   width: '300'
-}
+};
 
 export const List = (args) => (
   <Card {...args}>
@@ -103,12 +103,12 @@ export const List = (args) => (
       <ListItem text='item 3' />
     </ListGroup>
   </Card>
-)
+);
 
 List.args = {
   align: ['left', 'center', 'right'],
   width: '300'
-}
+};
 
 export const Combination = (args) => (
   <Card {...args}>
@@ -116,8 +116,8 @@ export const Combination = (args) => (
     <CardImage {...args} />
     <CardFooter text='Footer' />
   </Card>
-)
+);
 
 Combination.args = {
   imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/sails.png'
-}
+};
