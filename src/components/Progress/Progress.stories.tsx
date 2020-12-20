@@ -1,5 +1,5 @@
-import React from 'react'
-import { Progress, ProgressBar } from './Progress'
+import React from 'react';
+import { Progress, ProgressBar } from './Progress';
 
 export default {
   component: Progress,
@@ -19,13 +19,13 @@ export default {
       }
     }
   }
-}
+};
 
 export const Basic = (args) => (
   <Progress {...args}>
     <ProgressBar {...args}>{args.label}</ProgressBar>
   </Progress>
-)
+);
 
 Basic.args = {
   striped: 'false',
@@ -34,13 +34,13 @@ Basic.args = {
   label: '',
   color: 'rgb(43, 194, 83)',
   height: '25px'
-}
+};
 
 export const Thin = (args) => (
   <Progress {...args}>
     <ProgressBar {...args} />
   </Progress>
-)
+);
 
 Thin.args = {
   height: '3px',
@@ -49,13 +49,13 @@ Thin.args = {
   animated: 'false',
   label: '',
   color: 'rgb(43, 194, 83)'
-}
+};
 
 export const AllOptions = (args) => (
   <Progress {...args}>
     <ProgressBar {...args}>{args.label}</ProgressBar>
   </Progress>
-)
+);
 
 AllOptions.args = {
   striped: 'true',
@@ -64,4 +64,4 @@ AllOptions.args = {
   label: 'completed: 25%',
   color: 'rgb(43, 194, 83)',
   height: '25px'
-}
+};

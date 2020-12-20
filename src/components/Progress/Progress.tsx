@@ -1,43 +1,43 @@
-import React from 'react'
-import './progress.css'
+import React from 'react';
+import './progress.css';
 
 interface ProgressProps {
-  children?: string
-  height?: string
+  children?: string;
+  height?: string;
 }
 
 interface ProgressBarProps {
-  children?: string
-  color?: string
-  striped?: string
-  animated?: string
-  width?: string
+  children?: string;
+  color?: string;
+  striped?: string;
+  animated?: string;
+  width?: string;
 }
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   constructor(props) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true }
+    return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>
+      return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
 const Progress = ({ children, height }: ProgressProps): JSX.Element => {
-  console.log(children)
-  let heightRule = height && typeof height === 'string' ? height : '25px'
+  console.log(children);
+  let heightRule = height && typeof height === 'string' ? height : '25px';
 
   return (
     <ErrorBoundary>
@@ -45,8 +45,8 @@ const Progress = ({ children, height }: ProgressProps): JSX.Element => {
         {children}
       </div>
     </ErrorBoundary>
-  )
-}
+  );
+};
 
 const ProgressBar = ({
   children,
@@ -55,13 +55,13 @@ const ProgressBar = ({
   animated,
   width
 }: ProgressBarProps): JSX.Element => {
-  let widthRule = width && typeof width === 'string' ? width : '25%'
+  let widthRule = width && typeof width === 'string' ? width : '25%';
   let colorRule =
-    color && typeof color === 'string' ? color : 'rgb(43, 194, 83)'
-  let additionalClass = ''
+    color && typeof color === 'string' ? color : 'rgb(43, 194, 83)';
+  let additionalClass = '';
 
   if (typeof striped === 'string' && striped === 'true') {
-    additionalClass += 'progress-bar-striped '
+    additionalClass += 'progress-bar-striped ';
   }
 
   if (
@@ -69,7 +69,7 @@ const ProgressBar = ({
     striped === 'true' &&
     animated === 'true'
   ) {
-    additionalClass += 'animate '
+    additionalClass += 'animate ';
   }
 
   return (
@@ -81,7 +81,7 @@ const ProgressBar = ({
         <span>{children}</span>
       </div>
     </ErrorBoundary>
-  )
-}
+  );
+};
 
-export { Progress, ProgressBar }
+export { Progress, ProgressBar };
