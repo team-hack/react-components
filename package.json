@@ -66,6 +66,7 @@
     "dist"
   ],
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.1",
     "@popperjs/core": "^2.5.4",
     "@types/jest": "^26.0.18"
   }
