@@ -34,10 +34,7 @@ function populateStyleString(props) {
 
 // Composite Components (wrap around other elements)
 const Card = ({ width = '300', children }: CompositeCardProps): JSX.Element => {
-  //default width is in pixels, but if string can be appended with
-  //"-rem" or "-pct" for relative widths
   let widthRule;
-  console.log(width);
   if (typeof width === 'string') {
     widthRule = `${width}px`;
   }
@@ -72,7 +69,8 @@ const CardBody = ({ children, ...props }: CompositeCardProps): JSX.Element => {
 
 const CardImage = ({ imageSource, ...props }: SimpleCardProps): JSX.Element => {
   let styleStr = populateStyleString(props);
-  const srcProp = imageSource ? imageSource : '';
+  const srcProp = imageSource ? imageSource : 'https://via.placeholder.com/150';
+
   return (
     <div className={`card-image ${styleStr}`}>
       <img className='image' src={srcProp} />

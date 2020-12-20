@@ -36,7 +36,6 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
 }
 
 const Progress = ({ children, height }: ProgressProps): JSX.Element => {
-  console.log(children);
   let heightRule = height && typeof height === 'string' ? height : '25px';
 
   return (
