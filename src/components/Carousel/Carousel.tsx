@@ -79,9 +79,44 @@ const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
     }
   })
 
+  function keyEvn(e) {
+    switch (e.keyCode) {
+      case 37:
+        doSomething(-1)
+        break
+      case 38:
+        setCurrentSlide(0)
+        break
+      case 39:
+        doSomething(1)
+        break
+      case 40:
+        setCurrentSlide(count - 1)
+        break
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', keyEvn)
+    return () => {
+      window.removeEventListener('keydown', keyEvn)
+    }
+  })
+
+  function msEnter() {
+    setPauseCycling(true)
+    console.log('ms enter')
+  }
+  function msLeave() {
+    setPauseCycling(false)
+    console.log('ms leave')
+  }
+
   return (
     <ErrorBoundary>
       <div
+        onMouseOver={msEnter}
+        onMouseOut={msLeave}
         className='carousel-container'
         // style={{ height: heightRule, display: multipleStyle }}
       >
