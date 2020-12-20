@@ -2,9 +2,15 @@ import React, { useState, useEffect } from 'react'
 import './carousel.css'
 
 interface CarouselProps {
-  children?: string
+  children?: JSX.Element[] | JSX.Element
   imageSource?: string
+  showSlide?: boolean
+  count?: number
+  currentSlide?: number
+  selectImage?(): void
+  onClick?(i: number): void
   // height?: string
+  interval?: string
 }
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
@@ -28,9 +34,10 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   }
 }
 
-const Carousel = ({ children, auto }: CarouselProps): JSX.Element => {
+const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
   const [count, setCount] = useState(0)
   const [currentSlide, setCurrentSlide] = useState(1)
+  const [pauseCycling, setPauseCycling] = useState(false)
 
   function doSomething(n) {
     console.log('this is n', n, currentSlide, count)
@@ -64,14 +71,13 @@ const Carousel = ({ children, auto }: CarouselProps): JSX.Element => {
   }, [])
 
   useEffect(() => {
-    if (auto) {
-      const listener = setInterval(() => doSomething(1), 3000)
+    if (interval && !pauseCycling) {
+      const listener = setInterval(() => doSomething(1), parseInt(interval))
       return () => {
         clearInterval(listener) //This is important
       }
     }
   })
-  console.log(count)
 
   return (
     <ErrorBoundary>
@@ -112,17 +118,7 @@ const CarouselItem = ({
   imageSource,
   showSlide
 }: CarouselProps): JSX.Element => {
-  return (
-    // <div className={`fade ${showSlide ? 'show' : 'hide'}`}>
-    //   {/* <div class='numbertext'>1 / 3</div> */}
-
-    //   <div className='text'>
-    //     <h5>Caption title</h5>
-    //     <p>caption text</p>
-    //   </div>
-    // </div>
-    <div className={`fade ${showSlide ? 'show' : 'hide'}`}>{children}</div>
-  )
+  return <div className={`fade ${showSlide ? 'show' : 'hide'}`}>{children}</div>
 }
 
 const CarouselControl = ({
@@ -194,7 +190,7 @@ const CarouselIndicators = ({
 }
 
 const CarouselImage = ({
-  children,
+  // children,
   imageSource,
   showSlide
 }: CarouselProps): JSX.Element => {
@@ -204,8 +200,9 @@ const CarouselImage = ({
 const CarouselCaption = ({
   children,
   imageSource,
-  showSlide
+  ...props
 }: CarouselProps): JSX.Element => {
+  console.log(props)
   return <div className='text'>{children}</div>
 }
 

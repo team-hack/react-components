@@ -1,14 +1,33 @@
 * {
+  box-sizing: border-box !important;
+}
+
+/* *,
+*::before,
+*::after {
+  margin: 0 !important;
+  padding: 0;
+  outline: 0;
   box-sizing: border-box;
+} */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
 
 .carousel-container {
   max-width: 1000px;
   position: relative;
   margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
 
   /* height: 2rem; */
-  background-color: gray;
+  /* background-color: gray; */
 }
 
 .slide {
@@ -24,7 +43,10 @@
 
 .img {
   /* max-height: 400px; */
-  height: 350px;
+  height: 400px;
+  max-height: 400px;
+  /* height: 350px; */
+  /* object-fit: cover; */
   object-fit: cover;
   /* fill | contain | cover | none | scale-down */
 }
@@ -56,7 +78,7 @@
   font-size: 15px;
   padding: 8px 12px;
   position: absolute;
-  bottom: 20px;
+  bottom: 10%;
   width: 100%;
   text-align: center;
 }
@@ -65,7 +87,7 @@
   cursor: pointer;
   height: 15px;
   width: 15px;
-  margin: 0 2px;
+  margin: 0 10px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
@@ -75,4 +97,29 @@
 .active,
 .dot:hover {
   background-color: #717171;
+}
+
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
 }
