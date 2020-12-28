@@ -6,8 +6,15 @@ import Footer from './Footer';
 export default {
     title: 'example/Footer',
     component: Footer,
-    decorators: [],
-    backgroundColor: { control: 'color' }
+    argTypes: {
+        fontColor: { control: 'color' },
+        linkColor: { control: 'color' },
+        backgroundColor: { control: 'color' },
+        columns: { control: 'number' },
+    },
+    args: {
+        
+    },
 }
 
 const Template = (args) => <Footer {...args} />

@@ -1,17 +1,21 @@
 import React from 'react';
 
-const FooterLinks = () => {
+const FooterLinks = ({ linkColor }) => {
 
+    const cssStyles = {
+        color: linkColor,
+    }
     return (
         <>
-            <a href="javascript:null">Footer link 1</a>
-            <a href="javascript:null">Footer link 2</a>
-            <a href="javascript:null">Footer link 3</a>
-            <a href="javascript:null">Footer link 4</a>
-            <a href="javascript:null">Footer link 5</a>
-            <a href="javascript:null">Footer link 6</a>
-            <a href="javascript:null">Footer link 7</a>
-            <a href="javascript:null">Footer link 8</a>
+            <a style={cssStyles} href="#0">About</a>
+            <a style={cssStyles} href="#0">Projects</a>
+            <a style={cssStyles} href="#0">Blog</a>
+            <a style={cssStyles} href="#0">Contact</a>
+            <a style={cssStyles} href="#0">Forum</a>
+            <a style={cssStyles} href="#0">Archive</a>
+            <a style={cssStyles} href="#0">Gallery</a>
+            <a style={cssStyles} href="#0">Foo</a>
+            <a style={cssStyles} href="#0">Bar</a>
         </>
     )
 }

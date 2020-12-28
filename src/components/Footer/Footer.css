@@ -3,11 +3,11 @@
 }
 .light {
     color: #000;
-    background-color: #f7f7f7;
+    background-color: pink;
 }
 .dark {
     color: #f7f7f7;
-    background-color: rgb(44, 44, 44);
+    background-color: #001100;
 }
 .flex {
     display: flex;

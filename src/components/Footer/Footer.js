@@ -8,12 +8,16 @@ import FooterDisclaimer from './FooterDisclaimer';
 
 import './Footer.css';
 
-const Footer = ({ theme }) => {
+const Footer = ({ theme, backgroundColor, fontColor, linkColor, columns }) => {
+    const cssStyles = {
+        color: fontColor,
+        backgroundColor: backgroundColor,
+    }
     return (
-        <footer className={theme}>
+        <footer className={ theme } style={ cssStyles }>
             <FooterBrand position="center" />
-            <FooterLinksLayout position="center" numberOfColumns="3">
-                <FooterLinks />
+            <FooterLinksLayout position="center" >
+                <FooterLinks linkColor={ linkColor } numberOfColumns={ columns } />
             </FooterLinksLayout>
             <FooterDisclaimer position="center sm:left" />
         </footer>
