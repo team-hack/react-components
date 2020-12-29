@@ -2,23 +2,22 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import FooterBrand from './FooterBrand';
-import FooterLinksLayout from './FooterLinksLayout';
 import FooterLinks from './FooterLinks';
 import FooterDisclaimer from './FooterDisclaimer';
 
 import './Footer.css';
 
-const Footer = ({ theme, backgroundColor, fontColor, linkColor, columns }) => {
+const Footer = ({ theme, backgroundColor, fontColor, linkColor, columns, linksList}) => {
     const cssStyles = {
         color: fontColor,
         backgroundColor: backgroundColor,
+        linkColor: linkColor,
     }
+
     return (
         <footer className={ theme } style={ cssStyles }>
             <FooterBrand position="center" />
-            <FooterLinksLayout position="center" >
-                <FooterLinks linkColor={ linkColor } numberOfColumns={ columns } />
-            </FooterLinksLayout>
+            <FooterLinks linkColor = {linkColor} linksList = {linksList} numberOfColumns={columns} />
             <FooterDisclaimer position="center sm:left" />
         </footer>
     )

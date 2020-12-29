@@ -2,12 +2,12 @@
     padding: 5px;
 }
 .light {
-    color: #000;
-    background-color: pink;
+    color: #B3ADC5;
+    background-color: #FDFDFD;
 }
 .dark {
-    color: #f7f7f7;
-    background-color: #001100;
+    color: #E0E0E0;
+    background-color: #131316;
 }
 .flex {
     display: flex;
@@ -24,16 +24,39 @@
     padding: 5px;
     width: 100%;
 }
-
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear:both;
+}
+/* Setting column widths */
+.column {
+    float: left;
+    width: 100%;
+}
+.column-2 {
+    width: 50%;
+}
+.column-3 {
+    width: 33.33%;
+}
 .center {
     text-align: center;
 }
-
 .right {
     text-align: right;
 }
 
 @media (min-width: 640px) {
+    /* Responsive layout - makes the columns stack on top of each other
+    */
+    .column {
+        width: 100%;
+    }
+
+    /* Responsive Default for small
+    */
     .sm\:center {
         text-align: center;
     }
@@ -48,6 +71,7 @@
         justify-content: flex-start;
     }
 }
+
 
 
 @media (min-width: 768px) {}
