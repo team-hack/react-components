@@ -1,12 +1,21 @@
 import React from 'react'
-import './alert.css';
+import styles from  './alert.module.scss';
+
 
 interface AlertProps {
-    title?: string;
+    text?: string;
+    type?: string;
+    align?: string;
 }
 
-const Alert = ({title}: AlertProps): JSX.Element => (
-    <div className={`alert`}>{title ? title : 'Hello World'}</div>
-)
+export const Alert = ({text, align, type, ...props}: AlertProps) => {
+    return (
+        <div 
+        className={`
+            ${styles.alert} 
+            ${styles[type] ?? styles.primary} 
+            ${styles[align] ?? styles.left }`
+        }>{text ?? ''}</div>
+    )
+}
 
-export default Alert
