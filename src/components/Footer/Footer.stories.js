@@ -6,7 +6,7 @@ import Footer from './Footer';
 import * as FooterLinkStories from './FooterLink.stories';
 
 export default {
-    title: 'example/Footer',
+    title: 'Footer',
     component: Footer,
     argTypes: {
         fontColor: { control: 'color' },
