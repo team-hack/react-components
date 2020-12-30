@@ -30,7 +30,9 @@
     display: table;
     clear:both;
 }
-/* Setting column widths */
+/* TO-DO: set up the grid name '.column .grid' or '.grid-column' */
+/* Setting column widths for Grid view */
+/* 
 .column {
     float: left;
     width: 100%;
@@ -40,22 +42,46 @@
 }
 .column-3 {
     width: 33.33%;
-}
+} 
+*/
+
 .center {
     text-align: center;
 }
 .right {
     text-align: right;
 }
+/* Setting column widths with flex display */
+ul.column {
+    display:flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: flex-start;
+}
+ul li {
+    flex: 1 0 25%;
+    text-align:center;
+}
 
+ul.column-1 li {
+    flex: 1 0 100%;
+}
+ul.column-2 li {
+    flex: 0 0 50%;
+}
+ul.column-3 li {
+    flex: 0 0 33.33%;
+}
 @media (min-width: 640px) {
-    /* Responsive layout - makes the columns stack on top of each other
+    /* Responsive layout - For Grid view - makes the columns stack on top of each other  
     */
+    /*
     .column {
         width: 100%;
-    }
+    } 
+    */
 
-    /* Responsive Default for small
+    /* Responsive Default for small 
     */
     .sm\:center {
         text-align: center;
@@ -71,8 +97,6 @@
         justify-content: flex-start;
     }
 }
-
-
 
 @media (min-width: 768px) {}
 @media (min-width: 1024px) {}
