@@ -61,12 +61,13 @@ const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
   useEffect(() => {
     console.log(children)
     let counter = 0
-    children &&
-      children.forEach((child, i) => {
-        if (child.type === CarouselItem) {
-          counter++
-        }
-      })
+    Array.prototype.forEach.call(children, (child) => {
+      if (child.type === CarouselItem) {
+        counter++
+      }
+      console.log(child)
+    })
+
     setCount(counter)
   }, [])
 
@@ -133,7 +134,7 @@ const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
               onClick: (n) => {
                 doSomething(n)
               },
-              selectImage: (n) => {
+              selectImage: (n: number) => {
                 imageSelector(n)
               },
               showSlide,
@@ -153,7 +154,14 @@ const CarouselItem = ({
   imageSource,
   showSlide
 }: CarouselProps): JSX.Element => {
-  return <div className={`fade ${showSlide ? 'show' : 'hide'}`}>{children}</div>
+  return (
+    <div
+      data-testid='carousel-item'
+      className={`${showSlide ? 'show' : 'hide'}`}
+    >
+      {children}
+    </div>
+  )
 }
 
 const CarouselControl = ({
@@ -171,10 +179,10 @@ const CarouselControl = ({
 
   return (
     <>
-      <a className='prev' onClick={clickPrev}>
+      <a data-testid='prev' className='prev' onClick={clickPrev}>
         &#10094;
       </a>
-      <a className='next' onClick={clickNext}>
+      <a data-testid='next' className='next' onClick={clickNext}>
         &#10095;
       </a>
     </>
@@ -241,11 +249,18 @@ const CarouselCaption = ({
   return <div className='text'>{children}</div>
 }
 
+const useCounter = () => {
+  const [count, setCount] = useState(0)
+  // const increment = useCallback(() => setCount((x) => x + 1), [])
+  return {}
+}
+
 export {
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
   CarouselImage,
-  CarouselCaption
+  CarouselCaption,
+  useCounter
 }
