@@ -11,6 +11,7 @@ interface CarouselProps {
   onClick?(i: number): void
   // height?: string
   interval?: string
+  fade?: boolean
 }
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
@@ -34,7 +35,7 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   }
 }
 
-const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
+const Carousel = ({ children, interval, fade }: CarouselProps): JSX.Element => {
   const [count, setCount] = useState(0)
   const [currentSlide, setCurrentSlide] = useState(1)
   const [pauseCycling, setPauseCycling] = useState(false)
@@ -138,7 +139,8 @@ const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
               },
               showSlide,
               count,
-              currentSlide
+              currentSlide,
+              fade
             })
           }
           return null
@@ -151,12 +153,13 @@ const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
 const CarouselItem = ({
   children,
   imageSource,
-  showSlide
+  showSlide,
+  fade
 }: CarouselProps): JSX.Element => {
   return (
     <div
       data-testid='carousel-item'
-      className={`${showSlide ? 'show' : 'hide'}`}
+      className={`${showSlide ? 'show' : 'hide'} ${fade ? 'fade' : ''}`}
     >
       {children}
     </div>
