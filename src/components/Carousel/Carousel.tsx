@@ -119,7 +119,6 @@ const Carousel = ({ children, interval }: CarouselProps): JSX.Element => {
         onMouseOver={msEnter}
         onMouseOut={msLeave}
         className='carousel-container'
-        // style={{ height: heightRule, display: multipleStyle }}
       >
         {React.Children.map(children, (child, i) => {
           if (child) {
@@ -190,8 +189,6 @@ const CarouselControl = ({
 }
 
 const CarouselIndicators = ({
-  children,
-  imageSource,
   count,
   currentSlide,
   selectImage
@@ -225,15 +222,11 @@ const CarouselIndicators = ({
       }}
     >
       {elementArray}
-      {/* <span className='dot'></span>
-      <span className='dot'></span>
-      <span className='dot'></span> */}
     </div>
   )
 }
 
 const CarouselImage = ({
-  // children,
   imageSource,
   showSlide
 }: CarouselProps): JSX.Element => {
@@ -251,7 +244,6 @@ const CarouselCaption = ({
 
 const useCounter = () => {
   const [count, setCount] = useState(0)
-  // const increment = useCallback(() => setCount((x) => x + 1), [])
   return {}
 }
 

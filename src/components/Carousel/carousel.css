@@ -25,8 +25,6 @@ p {
   position: relative;
   margin: auto;
   font-family: Arial, Helvetica, sans-serif;
-
-  /* height: 2rem; */
   /* background-color: gray; */
 }
 
@@ -42,11 +40,8 @@ p {
 }
 
 .img {
-  /* max-height: 400px; */
   height: 400px;
   max-height: 400px;
-  /* height: 350px; */
-  /* object-fit: cover; */
   object-fit: cover;
   /* fill | contain | cover | none | scale-down */
 }
@@ -67,7 +62,6 @@ p {
   user-select: none;
 }
 
-/* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
