@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import './collapse.css';
 
 interface CollapseProps {
@@ -8,7 +8,7 @@ interface CollapseProps {
 
 const Collapse = ({ children }: CollapseProps): JSX.Element => {
   const [target, setTarget] = useState('');
-
+  const [collapse, setCollapse] = useState(true);
   let dataTarget = '';
 
   const childElements = React.Children.map(children, (child, i) => {
@@ -17,23 +17,27 @@ const Collapse = ({ children }: CollapseProps): JSX.Element => {
       return React.cloneElement(child, {
         ...child.props,
         onClick: (e) => {
-          let panel =
-            ReactDOM.findDOMNode(e.target).parentNode.children[1] ||
-            ReactDOM.findDOMNode(e.target).parentNode.parentNode.children[1];
-          if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-          } else {
-            panel.style.maxHeight = panel.scrollHeight + 'px';
-          }
+          // let panel =
+          //   ReactDOM.findDOMNode(e.target).parentNode.children[1] ||
+          //   ReactDOM.findDOMNode(e.target).parentNode.parentNode.children[1];
+          // if (panel.style.maxHeight) {
+          //   panel.style.maxHeight = null;
+          // } else {
+          //   panel.style.maxHeight = panel.scrollHeight + 'px';
+          // }
+
+          setCollapse(!collapse);
         }
       });
     }
     if (child.props.id === dataTarget) {
+      let className = collapse ? 'collapse' : 'open';
       if (target === '') {
         setTarget(child.props.id);
       }
       return React.cloneElement(child, {
-        ...child.props
+        ...child.props,
+        className
       });
     }
     return null;

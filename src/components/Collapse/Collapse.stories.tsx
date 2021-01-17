@@ -4,15 +4,7 @@ import { Card, CardBody, CardHeader } from '../Card/Card';
 
 export default {
   component: Collapse,
-  title: 'Collapse',
-  argTypes: {
-    align: {
-      control: {
-        type: 'select',
-        options: ['left', 'center', 'right']
-      }
-    }
-  }
+  title: 'Collapse'
 };
 
 export const Basic = (args) => {
