@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Collapse } from './Collapse';
-import { Card } from '../Card/Card';
+import { Card, CardBody, CardHeader } from '../Card/Card';
 
 export default {
   component: Collapse,
@@ -15,38 +15,50 @@ export default {
   }
 };
 
-export const Basic = (args) => (
-  <div>
+export const Basic = (args) => {
+  return (
     <Collapse {...args}>
-      <Card>
-        <button
-          className='btn btn-primary'
-          type='button'
-          data-toggle='collapse'
-          data-target='#collapseExample'
-          aria-expanded='false'
-          aria-controls='collapseExample'
-        >
-          Button with data-target
-        </button>
+      <button
+        type='button'
+        data-toggle='collapse'
+        data-target='collapseExample'
+      >
+        Collapse with Button
+      </button>
+
+      <div className='collapse' id='collapseExample'>
+        <div className=''>
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+          labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </Collapse>
+  );
+};
+
+export const BasicCard = (args) => (
+  <div>
+    <Card>
+      <Collapse {...args}>
+        <div data-toggle='collapse' data-target='collapseExample'>
+          <CardHeader text='Collapse with Card' />
+        </div>
 
         <div className='collapse' id='collapseExample'>
-          <div className='card card-body'>
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
-            terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
-            labore wes anderson cred nesciunt sapiente ea proident.
-          </div>
+          <CardBody>
+            <p>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life
+              accusamus terry richardson ad squid. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente
+              ea proident.
+            </p>
+          </CardBody>
         </div>
-      </Card>
-    </Collapse>
+      </Collapse>
+    </Card>
   </div>
 );
-
-Basic.args = {
-  align: ['left', 'center', 'right'],
-  imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png',
-  width: '300'
-};
 
 export const Accordian = (args) => (
   <Card>
@@ -58,11 +70,9 @@ export const Accordian = (args) => (
           padding: '20px'
         }}
         data-toggle='collapse'
-        data-target='#collapseExample1'
-        aria-expanded='false'
-        aria-controls='collapseExample'
+        data-target='collapseExample1'
       >
-        Button with data-target
+        Accordion Section One
       </div>
 
       <div className='collapse' id='collapseExample1'>
@@ -85,11 +95,9 @@ export const Accordian = (args) => (
           padding: '20px'
         }}
         data-toggle='collapse'
-        data-target='#collapseExample2'
-        aria-expanded='false'
-        aria-controls='collapseExample'
+        data-target='collapseExample2'
       >
-        Button with data-target
+        Accordion Section Two
       </div>
 
       <div className='collapse' id='collapseExample2'>

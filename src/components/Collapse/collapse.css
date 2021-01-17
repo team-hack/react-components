@@ -1,17 +1,14 @@
-/* .collapse {
-  display: none; 
- 
-} */
-/* 
-/* .open {
-  display: block;
-  transition: max-height 0.2s ease-out;
-} */
-
 .collapse {
-  padding: 0 18px;
+  display: none;
+}
+
+.open {
+  display: block;
+}
+
+/* .collapse {
   background-color: white;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-}
+} */
