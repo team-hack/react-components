@@ -1,4 +1,64 @@
 .alert {
-    background-color: red;
-    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+    padding: 0.75rem 1.5rem;
+    &.dark {
+        color: #343434;
+    }
+
+    &.primary {
+        background-color: #FF71CE;
+        color: #fff;
+        &.dark {
+            background-color: #B54E91;
+        }
+    }
+    
+    &.warning {
+        background-color: #FFFB96;
+        &.dark {
+            background-color: #FFDB96;
+        } 
+    }
+    
+    &.outline {
+        background-color: #fff;
+        border: 1px solid #343434;
+        &.dark {
+            background: #343434;
+            color: #fff;
+        }
+    }
+    
+    &.info {
+        background-color: #01CDFE;
+        &.dark {
+            background-color: #01EFFE;
+        }
+    }
+    
+    &.success {
+        background-color: #05FFA1;
+        &.dark {
+            background-color: #05FFD2;
+        } 
+    }
+
+    &.vaporwave {
+        background: linear-gradient(97.44deg, #FF71CE 0%, #01CDFE 99.98%);
+        &.dark {
+            background: linear-gradient(97.44deg, #B54E91 0%, #01EFFE 99.98%);
+        } 
+    }
+    
+    &.left {
+        text-align: left;
+    }
+    &.center {
+        text-align: center;
+    }
+    &.right {
+        text-align: right;
+    }
 }
+
