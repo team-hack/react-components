@@ -1,21 +1,33 @@
 import React from 'react'
-import styles from  './alert.module.scss';
+import './alert.scss';
 
 
 interface AlertProps {
     text?: string;
     type?: string;
     align?: string;
+    borderRadius?: string;
+    backgroundColor?: string;
+    fontColor?: string;
+    darkMode?: boolean;
 }
 
-export const Alert = ({text, align, type, ...props}: AlertProps) => {
+export const Alert = ({text, type, backgroundColor, borderRadius, fontColor, align, darkMode, ...props}: AlertProps) => {
+
+    const cssStyles = {
+        background: backgroundColor,        
+        color: fontColor,
+        borderRadius: `${borderRadius}px`
+    }
+
     return (
         <div 
         className={`
-            ${styles.alert} 
-            ${styles[type] ?? styles.primary} 
-            ${styles[align] ?? styles.left }`
-        }>{text ?? ''}</div>
+            alert 
+            ${type ? `${type}` :`primary`} 
+            ${darkMode ? 'dark' : ''} 
+            ${align ?? 'left'}`
+        } style={cssStyles} {...props}>{text ?? ''}</div>
     )
 }
 
