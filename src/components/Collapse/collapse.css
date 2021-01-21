@@ -1,14 +1,13 @@
 .collapse {
-  display: none;
+  overflow: hidden;
+  height: auto;
+  max-height: 0;
+  transition: max-height 0.35s cubic-bezier(0, 1, 0, 1);
 }
 
 .open {
-  display: block;
-}
-
-/* .collapse {
-  background-color: white;
-  max-height: 0;
   overflow: hidden;
-  transition: max-height 0.2s ease-out;
-} */
+  transition: max-height 0.3s cubic-bezier(1, 0, 1, 0);
+  height: auto;
+  max-height: 9999px;
+}

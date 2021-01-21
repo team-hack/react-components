@@ -8,6 +8,7 @@ export default {
 };
 
 export const Basic = (args) => {
+  const ref = React.createRef();
   return (
     <Collapse {...args}>
       <button
@@ -37,7 +38,7 @@ export const BasicCard = (args) => (
           <CardHeader text='Collapse with Card' />
         </div>
 
-        <div className='collapse' id='collapseExample'>
+        <div id='collapseExample'>
           <CardBody>
             <p>
               Anim pariatur cliche reprehenderit, enim eiusmod high life
@@ -52,7 +53,7 @@ export const BasicCard = (args) => (
   </div>
 );
 
-export const Accordian = (args) => (
+export const Accordion = (args) => (
   <Card>
     <Collapse {...args}>
       <div
