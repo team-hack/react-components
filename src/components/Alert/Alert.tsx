@@ -1,12 +1,33 @@
 import React from 'react'
-import './alert.css';
+import './alert.scss';
+
 
 interface AlertProps {
-    title?: string;
+    text?: string;
+    type?: string;
+    align?: string;
+    borderRadius?: string;
+    backgroundColor?: string;
+    fontColor?: string;
+    darkMode?: boolean;
 }
 
-const Alert = ({title}: AlertProps): JSX.Element => (
-    <div className={`alert`}>{title ? title : 'Hello World'}</div>
-)
+export const Alert = ({text, type, backgroundColor, borderRadius, fontColor, align, darkMode, ...props}: AlertProps) => {
 
-export default Alert
+    const cssStyles = {
+        background: backgroundColor,        
+        color: fontColor,
+        borderRadius: `${borderRadius}px`
+    }
+
+    return (
+        <div 
+        className={`
+            alert 
+            ${type ? `${type}` :`primary`} 
+            ${darkMode ? 'dark' : ''} 
+            ${align ?? 'left'}`
+        } style={cssStyles} {...props}>{text ?? ''}</div>
+    )
+}
+

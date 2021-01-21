@@ -1,0 +1,104 @@
+.row {
+    padding: 5px;
+}
+.light {
+    color: #B3ADC5;
+    background-color: #FDFDFD;
+}
+.dark {
+    color: #E0E0E0;
+    background-color: #131316;
+}
+.flex {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.flex-justify-left {
+    justify-content: flex-start;
+}
+
+.flex a {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+}
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear:both;
+}
+/* TO-DO: set up the grid name '.column .grid' or '.grid-column' */
+/* Setting column widths for Grid view */
+/* 
+.column {
+    float: left;
+    width: 100%;
+}
+.column-2 {
+    width: 50%;
+}
+.column-3 {
+    width: 33.33%;
+} 
+*/
+
+.center {
+    text-align: center;
+}
+.right {
+    text-align: right;
+}
+/* Setting column widths with flex display */
+ul.column {
+    display:flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: flex-start;
+}
+ul li {
+    flex: 1 0 25%;
+    text-align:center;
+}
+
+ul.column-1 li {
+    flex: 1 0 100%;
+}
+ul.column-2 li {
+    flex: 0 0 50%;
+}
+ul.column-3 li {
+    flex: 0 0 33.33%;
+}
+@media (min-width: 640px) {
+    /* Responsive layout - For Grid view - makes the columns stack on top of each other  
+    */
+    /*
+    .column {
+        width: 100%;
+    } 
+    */
+
+    /* Responsive Default for small 
+    */
+    .sm\:center {
+        text-align: center;
+    }
+    .sm\:left {
+        text-align: left;
+
+    }
+    .sm\:right {
+        text-align: right;
+    }
+    .sm\:flex-justify-left {
+        justify-content: flex-start;
+    }
+}
+
+@media (min-width: 768px) {}
+@media (min-width: 1024px) {}
+@media (min-width: 1280px) {}
+@media (min-width: 1536px) {}

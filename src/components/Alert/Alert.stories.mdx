@@ -1,0 +1,137 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks'
+import { Alert } from './Alert'
+
+
+<Meta title='MDX/Alert' component={Alert}  argTypes={{
+        fontColor: { control: 'color' },
+        backgroundColor: { control: 'color' },
+        borderRadius: {
+            control: {
+                type: 'range',
+                min: 0,
+                max: 50,
+                step: 1
+            }
+        },
+        darkMode: { control: 'boolean'},
+        align: {
+            control: {
+                type: 'select',
+                options: ['left', 'center', 'right']
+            }
+        },
+        type: {
+            control: {
+                type: 'select',
+                options: ['primary', 'warning', 'info', 'success', 'outline', 'vaporwave']
+            }
+        }
+    }} />
+
+export const Template = (args) => <Alert {...args} />
+
+## Alert
+
+Alerts.  Feel free to change its colors, border radius, text, as well as other controls you see here.
+
+### Primary
+
+<Canvas>
+  <Story
+    name='Primary'
+    args={{
+      text: 'Primary Alert',
+      align: `center`,
+      borderRadius: 4,
+      type: `primary`,
+      onClick: () => alert('Whoa Mommy')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Warning 
+
+<Canvas>
+  <Story
+    name='Warning'
+    args={{
+      text: 'This is your warning',
+      align: `center`,
+      borderRadius: 4,
+      type: `warning`,
+      onClick: () => alert('Whoa Mommy')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Info 
+
+<Canvas>
+  <Story
+    name='Info'
+    args={{
+      text: 'An info panel',
+      align: `center`,
+      borderRadius: 4,
+      type: `info`,
+      onClick: () => alert('Whoa Mommy')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Success 
+
+<Canvas>
+  <Story
+    name='Success'
+    args={{
+      text: 'This was successful',
+      align: `center`,
+      borderRadius: 4,
+      type: `success`,
+      onClick: () => alert('Whoa Mommy')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Outline 
+
+<Canvas>
+  <Story
+    name='Outline'
+    args={{
+      text: 'An outlined alert',
+      align: `center`,
+      borderRadius: 4,
+      type: `outline`,
+      onClick: () => alert('Whoa Mommy')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+### Vaporwave
+
+<Canvas>
+  <Story
+    name='Vaporwave'
+    args={{
+      text: 'Vaporwavey Effect',
+      align: `center`,
+      borderRadius: 4,
+      type: `vaporwave`,
+      onClick: () => alert('Whoa Mommy')
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
