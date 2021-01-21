@@ -13,7 +13,7 @@ const Collapse = ({ children }: CollapseProps): JSX.Element => {
       dataTarget = child.props['data-target'];
       return React.cloneElement(child, {
         ...child.props,
-        onClick: (e) => {
+        onClick: () => {
           setCollapse(!collapse);
         }
       });
