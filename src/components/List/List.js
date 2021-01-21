@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import './list.css'
+import './List.css'
 
-export const List = ({isOrdered, listItems, ...props}) => {
+const List = ({isOrdered, listItems, ...props}) => {
 
     if (isOrdered) {
       return (
@@ -37,6 +37,8 @@ export const List = ({isOrdered, listItems, ...props}) => {
     isOrdered: false,
     listItems: [1,2,3],
   }
+
+  export default List
 
 
 
