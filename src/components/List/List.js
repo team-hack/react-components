@@ -9,7 +9,7 @@ export const List = ({isOrdered, listItems, ...props}) => {
         <ol>
         {listItems.map((listItem, i) => {
           return (
-            <li className={`storybook-li`}>{listItem}</li>
+            <li key={i} className={`storybook-li`}>{listItem}</li>
           )
         }) }
       </ol>
@@ -19,7 +19,7 @@ export const List = ({isOrdered, listItems, ...props}) => {
       <ul>
       {listItems.map((listItem, i) => {
         return (
-          <li className={`storybook-li`}>{listItem}</li>
+          <li key={i} className={`storybook-li`}>{listItem}</li>
         )
       }) }
     </ul>
@@ -27,10 +27,17 @@ export const List = ({isOrdered, listItems, ...props}) => {
     )
   } 
 
+  List.propTypes = { 
+    // optional
+    isOrdered: PropTypes.bool,
+    listItems: PropTypes.array
+  }
+
   List.defaultProps = {
     isOrdered: false,
     listItems: [1,2,3],
   }
+
 
 
   // create li linked item
