@@ -7,6 +7,8 @@ interface SimpleCardProps {
   bold?: boolean;
   text?: string;
   align?: string;
+  width?: string;
+  imageHeight?: string;
 }
 
 interface CompositeCardProps {
@@ -18,29 +20,60 @@ interface CompositeCardProps {
 
 function populateStyleString(props) {
   let str = '';
-  Object.keys(props).map((item) => {
-    if (item === 'children') {
-      return;
-    }
-    if (item === 'align' || item === 'position') {
-      str += `${props[item]} `;
-    } else {
-      str += `${item} `;
-    }
-  });
+  // Object.keys(props).map((item) => {
+  //   if (item === 'children') {
+  //     return;
+  //   }
+  //   if (item === 'align' || item === 'position') {
+  //     console.log('WHAT IS THIS', props[item]);
+  //     str += `${props[item]} `;
+  //   }
+  // else {
+  //   str += `${item} `;
+  // }
+  // });
 
   return str;
 }
 
 // Composite Components (wrap around other elements)
-const Card = ({ width = '300', children }: CompositeCardProps): JSX.Element => {
-  let widthRule;
-  if (typeof width === 'string') {
-    widthRule = `${width}px`;
-  }
+const Card = ({
+  width = '300',
+  children,
+  align,
+  ...props
+}: CompositeCardProps): JSX.Element => {
+  // console.log('in card props', props, width);
+  // let widthRule;
+  // if (typeof width === 'string') {
+  //   widthRule = `${width}px`;
+  // }
+  let widthRule = `${width}px`;
+  console.log('widthH', widthRule);
+
+  //
+  let childNodes = React.Children.map(children, (child, i) => {
+    console.log('CHILD', child);
+    if (child.type === CardImage) {
+      let className;
+      if (i === 0) {
+        className = 'image-first';
+      }
+      if (i === children.length - 1) {
+        className = 'image-last';
+      }
+      console.log('this is classname', className);
+      return React.cloneElement(child, {
+        ...child.props,
+        className
+      });
+    }
+    return child;
+  });
+
   return (
-    <div className='card' style={{ width: widthRule }}>
-      {children}
+    <div className='card' style={{ width: widthRule, textAlign: align }}>
+      {childNodes}
     </div>
   );
 };
@@ -54,10 +87,12 @@ const ListGroup = ({ children }: CompositeCardProps): JSX.Element => (
 
 const CardImageOverlay = ({
   children,
+  position,
   ...props
 }: CompositeCardProps): JSX.Element => {
+  console.log('POS', props, position);
   let styleStr = populateStyleString(props);
-  return <div className={`image-overlay ${styleStr}`}>{children}</div>;
+  return <div className={`image-overlay ${position}`}>{children}</div>;
 };
 
 const CardBody = ({ children, ...props }: CompositeCardProps): JSX.Element => {
@@ -67,13 +102,25 @@ const CardBody = ({ children, ...props }: CompositeCardProps): JSX.Element => {
 
 // Regular components (with self-closing tag)
 
-const CardImage = ({ imageSource, ...props }: SimpleCardProps): JSX.Element => {
+const CardImage = ({
+  imageSource,
+  width,
+  imageHeight = 200,
+  className,
+  ...props
+}: SimpleCardProps): JSX.Element => {
+  console.log('image props', props);
   let styleStr = populateStyleString(props);
-  const srcProp = imageSource ? imageSource : 'https://via.placeholder.com/150';
+  const srcProp = imageSource
+    ? imageSource
+    : `https://via.placeholder.com/${width}x${imageHeight}`;
 
   return (
-    <div className={`card-image ${styleStr}`}>
-      <img className='image' src={srcProp} />
+    <div
+      className={`card-image ${styleStr}`}
+      style={{ height: `${imageHeight}px` }}
+    >
+      <img className={`image ${className ? className : ''}`} src={srcProp} />
     </div>
   );
 };
