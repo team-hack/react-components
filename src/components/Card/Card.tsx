@@ -8,7 +8,8 @@ interface SimpleCardProps {
   text?: string;
   align?: string;
   width?: string;
-  imageHeight?: string;
+  imageHeight?: number;
+  className?: string;
 }
 
 interface CompositeCardProps {
@@ -18,42 +19,15 @@ interface CompositeCardProps {
   align?: string;
 }
 
-function populateStyleString(props) {
-  let str = '';
-  // Object.keys(props).map((item) => {
-  //   if (item === 'children') {
-  //     return;
-  //   }
-  //   if (item === 'align' || item === 'position') {
-  //     console.log('WHAT IS THIS', props[item]);
-  //     str += `${props[item]} `;
-  //   }
-  // else {
-  //   str += `${item} `;
-  // }
-  // });
-
-  return str;
-}
-
 // Composite Components (wrap around other elements)
 const Card = ({
   width = '300',
   children,
-  align,
-  ...props
+  align
 }: CompositeCardProps): JSX.Element => {
-  // console.log('in card props', props, width);
-  // let widthRule;
-  // if (typeof width === 'string') {
-  //   widthRule = `${width}px`;
-  // }
   let widthRule = `${width}px`;
-  console.log('widthH', widthRule);
 
-  //
   let childNodes = React.Children.map(children, (child, i) => {
-    console.log('CHILD', child);
     if (child.type === CardImage) {
       let className;
       if (i === 0) {
@@ -62,7 +36,6 @@ const Card = ({
       if (i === children.length - 1) {
         className = 'image-last';
       }
-      console.log('this is classname', className);
       return React.cloneElement(child, {
         ...child.props,
         className
@@ -87,17 +60,13 @@ const ListGroup = ({ children }: CompositeCardProps): JSX.Element => (
 
 const CardImageOverlay = ({
   children,
-  position,
-  ...props
+  position
 }: CompositeCardProps): JSX.Element => {
-  console.log('POS', props, position);
-  let styleStr = populateStyleString(props);
   return <div className={`image-overlay ${position}`}>{children}</div>;
 };
 
-const CardBody = ({ children, ...props }: CompositeCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <div className={`card-body ${styleStr}`}>{children}</div>;
+const CardBody = ({ children }: CompositeCardProps): JSX.Element => {
+  return <div className='card-body'>{children}</div>;
 };
 
 // Regular components (with self-closing tag)
@@ -109,40 +78,31 @@ const CardImage = ({
   className,
   ...props
 }: SimpleCardProps): JSX.Element => {
-  console.log('image props', props);
-  let styleStr = populateStyleString(props);
   const srcProp = imageSource
     ? imageSource
     : `https://via.placeholder.com/${width}x${imageHeight}`;
 
   return (
-    <div
-      className={`card-image ${styleStr}`}
-      style={{ height: `${imageHeight}px` }}
-    >
+    <div className='card-image' style={{ height: `${imageHeight}px` }}>
       <img className={`image ${className ? className : ''}`} src={srcProp} />
     </div>
   );
 };
 
-const CardTitle = ({ title, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <h2 className={`card-title ${styleStr}`}>{title}</h2>;
+const CardTitle = ({ title }: SimpleCardProps): JSX.Element => {
+  return <h2 className='card-title'>{title}</h2>;
 };
 
-const ListItem = ({ text, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <li className={`list-item ${styleStr}`}>{text}</li>;
+const ListItem = ({ text }: SimpleCardProps): JSX.Element => {
+  return <li className='list-item'>{text}</li>;
 };
 
-const CardHeader = ({ text, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <div className={`card-header ${styleStr}`}>{text}</div>;
+const CardHeader = ({ text }: SimpleCardProps): JSX.Element => {
+  return <div className='card-header'>{text}</div>;
 };
 
-const CardFooter = ({ text, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <div className={`card-footer ${styleStr}`}>{text}</div>;
+const CardFooter = ({ text }: SimpleCardProps): JSX.Element => {
+  return <div className='card-footer'>{text}</div>;
 };
 
 export {

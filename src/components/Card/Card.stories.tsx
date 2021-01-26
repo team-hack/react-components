@@ -60,7 +60,8 @@ export const Basic = (args) => (
 Basic.args = {
   align: 'left',
   imageSource: '',
-  width: 300
+  width: 300,
+  imageHeight: 200
 };
 
 export const HeaderAndFooter = (args) => (
@@ -68,8 +69,8 @@ export const HeaderAndFooter = (args) => (
     <CardImageContainer>
       <CardImage {...args} />
       <CardImageOverlay {...args}>
-        <p>hello</p>
-        <p>how are you</p>
+        <p>Title</p>
+        <p>Sub Title</p>
       </CardImageOverlay>
     </CardImageContainer>
 
@@ -86,6 +87,7 @@ HeaderAndFooter.args = {
   align: 'left',
   imageSource: '',
   width: '300',
+  imageHeight: 200,
   position: 'top-right'
 };
 
@@ -94,8 +96,8 @@ export const ImageOverlay = (args) => (
     <div style={{ position: 'relative' }}>
       <CardImage {...args} />
       <CardImageOverlay {...args}>
-        <h3>hello</h3>
-        <p>over the image</p>
+        <h3>Title</h3>
+        <p>Sub title</p>
       </CardImageOverlay>
     </div>
 
@@ -114,6 +116,7 @@ export const ImageOverlay = (args) => (
 ImageOverlay.args = {
   imageSource: '',
   width: '300',
+  imageHeight: 200,
   position: 'bottom-left'
 };
 
@@ -128,7 +131,7 @@ export const List = (args) => (
 );
 
 List.args = {
-  align: ['left', 'center', 'right'],
+  align: 'left',
   width: '300'
 };
 
@@ -141,7 +144,10 @@ export const Combination = (args) => (
 );
 
 Combination.args = {
-  imageSource: ''
+  imageSource: '',
+  width: '300',
+  imageHeight: 200,
+  align: 'left'
 };
 
 export const ImageBottom = (args) => (
@@ -152,7 +158,8 @@ export const ImageBottom = (args) => (
 );
 
 ImageBottom.args = {
-  align: ['left', 'center', 'right'],
+  align: 'left',
   imageSource: '',
+  imageHeight: 200,
   width: 300
 };
