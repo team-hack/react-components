@@ -1,4 +1,7 @@
 .storybook-li {
-  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 18px; 
+  letter-spacing: 0em; 
+  text-align: left;
 }
+

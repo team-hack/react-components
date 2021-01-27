@@ -7,9 +7,11 @@ interface SimpleCardProps {
   bold?: boolean;
   text?: string;
   align?: string;
+
   width?: string;
   imageHeight?: number;
   className?: string;
+  children?: any;
 }
 
 interface CompositeCardProps {

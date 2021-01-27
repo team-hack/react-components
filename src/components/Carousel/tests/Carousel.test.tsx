@@ -1,7 +1,7 @@
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import userEvent from '@testing-library/user-event'
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import userEvent from '@testing-library/user-event';
 import {
   Carousel,
   CarouselItem,
@@ -9,19 +9,9 @@ import {
   CarouselCaption,
   CarouselControl,
   CarouselIndicators
-} from '../Carousel'
+} from '../Carousel';
 
-// test('Progress component can nest components', () => {
-//   const { container } = render(
-//     <Carousel>
-//       <CarouselItem />
-//     </Carousel>
-//   )
-//   console.log(container.firstChild.firstChild)
-//   expect(container.firstChild.firstChild).toHaveLength(1)
-// })
-
-describe('Progress Bar', () => {
+describe('Carousel', () => {
   beforeEach(() => {
     render(
       <Carousel>
@@ -50,64 +40,60 @@ describe('Progress Bar', () => {
         <CarouselControl />
         <CarouselIndicators />
       </Carousel>
-    )
-  })
+    );
+  });
 
   test('there are 4 images in the carousel', () => {
-    const $card = screen.getAllByTestId('carousel-item')
-    console.log($card.length)
-    expect($card.length).toBe(4)
-  })
+    const $card = screen.getAllByTestId('carousel-item');
+    expect($card.length).toBe(4);
+  });
 
   test('ther second shows up', () => {
-    const $card = screen.getAllByTestId('carousel-item')
-    expect($card[0]).toHaveClass('hide')
-    expect($card[1]).toHaveClass('show')
-    expect($card[2]).toHaveClass('hide')
-    expect($card[3]).toHaveClass('hide')
-  })
-  // test('Progress component can nest components', () => {
-  //   console.log(container.firstChild.firstChild)
-  //   expect(container.).toHaveClass('carousel-item')
-  // })
+    const $card = screen.getAllByTestId('carousel-item');
+    expect($card[0]).toHaveClass('hide');
+    expect($card[1]).toHaveClass('show');
+    expect($card[2]).toHaveClass('hide');
+    expect($card[3]).toHaveClass('hide');
+  });
+
   test('the next card shows up if user clicks next', () => {
-    userEvent.click(screen.getByTestId('next'))
-    const $card = screen.getAllByTestId('carousel-item')
-    expect($card[0]).toHaveClass('hide')
-    expect($card[1]).toHaveClass('hide')
-    expect($card[2]).toHaveClass('show')
-    expect($card[3]).toHaveClass('hide')
-  })
+    userEvent.click(screen.getByTestId('next'));
+    const $card = screen.getAllByTestId('carousel-item');
+    expect($card[0]).toHaveClass('hide');
+    expect($card[1]).toHaveClass('hide');
+    expect($card[2]).toHaveClass('show');
+    expect($card[3]).toHaveClass('hide');
+  });
 
   test('the prev card shows up if user clicks prev', () => {
-    userEvent.click(screen.getByTestId('prev'))
-    const $card = screen.getAllByTestId('carousel-item')
-    expect($card[0]).toHaveClass('show')
-    expect($card[1]).toHaveClass('hide')
-    expect($card[2]).toHaveClass('hide')
-    expect($card[3]).toHaveClass('hide')
-  })
+    userEvent.click(screen.getByTestId('prev'));
+    const $card = screen.getAllByTestId('carousel-item');
+    expect($card[0]).toHaveClass('show');
+    expect($card[1]).toHaveClass('hide');
+    expect($card[2]).toHaveClass('hide');
+    expect($card[3]).toHaveClass('hide');
+  });
 
   test('carousel goes back to first', () => {
-    userEvent.click(screen.getByTestId('next'))
-    userEvent.click(screen.getByTestId('next'))
-    userEvent.click(screen.getByTestId('next'))
+    userEvent.click(screen.getByTestId('next'));
+    userEvent.click(screen.getByTestId('next'));
+    userEvent.click(screen.getByTestId('next'));
 
-    const $card = screen.getAllByTestId('carousel-item')
-    expect($card[0]).toHaveClass('show')
-    expect($card[1]).toHaveClass('hide')
-    expect($card[2]).toHaveClass('hide')
-    expect($card[3]).toHaveClass('hide')
-  })
+    const $card = screen.getAllByTestId('carousel-item');
+    expect($card[0]).toHaveClass('show');
+    expect($card[1]).toHaveClass('hide');
+    expect($card[2]).toHaveClass('hide');
+    expect($card[3]).toHaveClass('hide');
+  });
 
   test('if click prev on first card goes to last card', () => {
-    userEvent.click(screen.getByTestId('prev'))
-    userEvent.click(screen.getByTestId('prev'))
+    userEvent.click(screen.getByTestId('prev'));
+    userEvent.click(screen.getByTestId('prev'));
 
-    const $card = screen.getAllByTestId('carousel-item')
-    expect($card[0]).toHaveClass('hide')
-    expect($card[1]).toHaveClass('hide')
-    expect($card[2]).toHaveClass('hide')
-    expect($card[3]).toHaveClass('show')
-  })
-})
+    const $card = screen.getAllByTestId('carousel-item');
+    expect($card[0]).toHaveClass('hide');
+    expect($card[1]).toHaveClass('hide');
+    expect($card[2]).toHaveClass('hide');
+    expect($card[3]).toHaveClass('show');
+  });
+});
