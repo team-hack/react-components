@@ -7,6 +7,10 @@ interface SimpleCardProps {
   bold?: boolean;
   text?: string;
   align?: string;
+
+  width?: string;
+  imageHeight?: number;
+  className?: string;
   children?: any;
 }
 
@@ -17,31 +21,34 @@ interface CompositeCardProps {
   align?: string;
 }
 
-function populateStyleString(props) {
-  let str = '';
-  Object.keys(props).map((item) => {
-    if (item === 'children') {
-      return;
+// Composite Components (wrap around other elements)
+const Card = ({
+  width = '300',
+  children,
+  align
+}: CompositeCardProps): JSX.Element => {
+  let widthRule = `${width}px`;
+
+  let childNodes = React.Children.map(children, (child, i) => {
+    if (child.type === CardImage) {
+      let className;
+      if (i === 0) {
+        className = 'image-first';
+      }
+      if (i === children.length - 1) {
+        className = 'image-last';
+      }
+      return React.cloneElement(child, {
+        ...child.props,
+        className
+      });
     }
-    if (item === 'align' || item === 'position') {
-      str += `${props[item]} `;
-    } else {
-      str += `${item} `;
-    }
+    return child;
   });
 
-  return str;
-}
-
-// Composite Components (wrap around other elements)
-const Card = ({ width = '300', children }: CompositeCardProps): JSX.Element => {
-  let widthRule;
-  if (typeof width === 'string') {
-    widthRule = `${width}px`;
-  }
   return (
-    <div className='card' style={{ width: widthRule }}>
-      {children}
+    <div className='card' style={{ width: widthRule, textAlign: align }}>
+      {childNodes}
     </div>
   );
 };
@@ -55,48 +62,49 @@ const ListGroup = ({ children }: CompositeCardProps): JSX.Element => (
 
 const CardImageOverlay = ({
   children,
-  ...props
+  position
 }: CompositeCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <div className={`image-overlay ${styleStr}`}>{children}</div>;
+  return <div className={`image-overlay ${position}`}>{children}</div>;
 };
 
-const CardBody = ({ children, ...props }: CompositeCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <div className={`card-body ${styleStr}`}>{children}</div>;
+const CardBody = ({ children }: CompositeCardProps): JSX.Element => {
+  return <div className='card-body'>{children}</div>;
 };
 
 // Regular components (with self-closing tag)
 
-const CardImage = ({ imageSource, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  const srcProp = imageSource ? imageSource : 'https://via.placeholder.com/150';
+const CardImage = ({
+  imageSource,
+  width,
+  imageHeight = 200,
+  className,
+  ...props
+}: SimpleCardProps): JSX.Element => {
+  const srcProp = imageSource
+    ? imageSource
+    : `https://via.placeholder.com/${width}x${imageHeight}`;
 
   return (
-    <div className={`card-image ${styleStr}`}>
-      <img className='image' src={srcProp} />
+    <div className='card-image' style={{ height: `${imageHeight}px` }}>
+      <img className={`image ${className ? className : ''}`} src={srcProp} />
     </div>
   );
 };
 
-const CardTitle = ({ title, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <h2 className={`card-title ${styleStr}`}>{title}</h2>;
+const CardTitle = ({ title }: SimpleCardProps): JSX.Element => {
+  return <h2 className='card-title'>{title}</h2>;
 };
 
-const ListItem = ({ text, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <li className={`list-item ${styleStr}`}>{text}</li>;
+const ListItem = ({ text }: SimpleCardProps): JSX.Element => {
+  return <li className='list-item'>{text}</li>;
 };
 
-const CardHeader = ({ text, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <div className={`card-header ${styleStr}`}>{text}</div>;
+const CardHeader = ({ text }: SimpleCardProps): JSX.Element => {
+  return <div className='card-header'>{text}</div>;
 };
 
-const CardFooter = ({ text, ...props }: SimpleCardProps): JSX.Element => {
-  let styleStr = populateStyleString(props);
-  return <div className={`card-footer ${styleStr}`}>{text}</div>;
+const CardFooter = ({ text }: SimpleCardProps): JSX.Element => {
+  return <div className='card-footer'>{text}</div>;
 };
 
 export {

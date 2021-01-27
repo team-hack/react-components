@@ -6,19 +6,20 @@ ul {
 
 /* main card */
 .card {
-  width: 300px;
   border: 1px solid #d3d3d3;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  font-family: Helvetica, sans-serif !important;
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+.image-container {
+  position: relative;
 }
 
 /* image styles */
 .card-image {
   width: 100%;
-  background-color: grey;
-  height: 200px;
   border: none;
   position: relative;
 }
@@ -28,6 +29,17 @@ ul {
   height: 100%;
   object-fit: cover;
   overflow: hidden;
+  background-color: #d3d3d3;
+}
+
+.image-first {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.image-last {
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 .image-overlay {
@@ -43,7 +55,7 @@ ul {
 }
 
 .card-body {
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  padding: 1rem 1.5rem 1.5rem 1.5rem;
 }
 
 .list-item {
@@ -60,6 +72,8 @@ ul {
   background-color: #fafafa;
   order: -1;
   padding: 1rem;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .card-footer {
@@ -67,6 +81,8 @@ ul {
   border-top: 1px solid #d3d3d3;
   order: 100;
   padding: 1rem;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
 }
 
 /* styles that add specific attributes to existing elements */
