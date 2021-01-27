@@ -1,117 +1,108 @@
-import React, { useState, useEffect } from 'react'
-import './carousel.css'
+import React, { useState, useEffect } from 'react';
+import './carousel.css';
 
 interface CarouselProps {
-  children?: JSX.Element[] | JSX.Element
-  imageSource?: string
-  showSlide?: boolean
-  count?: number
-  currentSlide?: number
-  selectImage?(): void
-  onClick?(i: number): void
+  children?: JSX.Element[] | JSX.Element;
+  imageSource?: string;
+  showSlide?: boolean;
+  count?: number;
+  currentSlide?: number;
+  selectImage?(): void;
+  onClick?(i: number): void;
   // height?: string
-  interval?: string
-  fade?: boolean
+  interval?: string;
+  fade?: boolean;
 }
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   constructor(props) {
-    super(props)
-    this.state = { hasError: false }
+    super(props);
+    this.state = { hasError: false };
   }
 
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
-    return { hasError: true }
+    return { hasError: true };
   }
 
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <h1>Something went wrong.</h1>
+      return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }
 
 const Carousel = ({ children, interval, fade }: CarouselProps): JSX.Element => {
-  const [count, setCount] = useState(0)
-  const [currentSlide, setCurrentSlide] = useState(1)
-  const [pauseCycling, setPauseCycling] = useState(false)
+  const [count, setCount] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(1);
+  const [pauseCycling, setPauseCycling] = useState(false);
 
   function doSomething(n) {
-    console.log('this is n', n, currentSlide, count)
     if (n + currentSlide >= count) {
-      console.log('greater than count')
-      setCurrentSlide(0)
+      setCurrentSlide(0);
     } else if (n + currentSlide < 0) {
-      console.log('less than 1', count)
-      setCurrentSlide(count - 1)
+      setCurrentSlide(count - 1);
     } else {
-      console.log('in range')
-      setCurrentSlide(currentSlide + n)
+      setCurrentSlide(currentSlide + n);
     }
   }
 
   function imageSelector(n) {
-    console.log('doing something 2', n)
-    setCurrentSlide(n)
+    setCurrentSlide(n);
   }
 
   useEffect(() => {
-    console.log(children)
-    let counter = 0
+    let counter = 0;
     Array.prototype.forEach.call(children, (child) => {
       if (child.type === CarouselItem) {
-        counter++
+        counter++;
       }
-      console.log(child)
-    })
+    });
 
-    setCount(counter)
-  }, [])
+    setCount(counter);
+  }, []);
 
   useEffect(() => {
     if (interval && !pauseCycling) {
-      const listener = setInterval(() => doSomething(1), parseInt(interval))
+      const listener = setInterval(() => doSomething(1), parseInt(interval));
       return () => {
-        clearInterval(listener) //This is important
-      }
+        clearInterval(listener); //This is important
+      };
     }
-  })
+  });
 
   function keyEvn(e) {
     switch (e.keyCode) {
       case 37:
-        doSomething(-1)
-        break
+        doSomething(-1);
+        break;
       case 38:
-        setCurrentSlide(0)
-        break
+        setCurrentSlide(0);
+        break;
       case 39:
-        doSomething(1)
-        break
+        doSomething(1);
+        break;
       case 40:
-        setCurrentSlide(count - 1)
-        break
+        setCurrentSlide(count - 1);
+        break;
     }
   }
 
   useEffect(() => {
-    window.addEventListener('keydown', keyEvn)
+    window.addEventListener('keydown', keyEvn);
     return () => {
-      window.removeEventListener('keydown', keyEvn)
-    }
-  })
+      window.removeEventListener('keydown', keyEvn);
+    };
+  });
 
   function msEnter() {
-    setPauseCycling(true)
-    console.log('ms enter')
+    setPauseCycling(true);
   }
   function msLeave() {
-    setPauseCycling(false)
-    console.log('ms leave')
+    setPauseCycling(false);
   }
 
   return (
@@ -123,32 +114,32 @@ const Carousel = ({ children, interval, fade }: CarouselProps): JSX.Element => {
       >
         {React.Children.map(children, (child, i) => {
           if (child) {
-            let showSlide = false
+            let showSlide = false;
             if (currentSlide === i) {
-              showSlide = true
+              showSlide = true;
             }
-            const childProps = child.props
-            const { onClick, value } = childProps
+            const childProps = child.props;
+            const { onClick, value } = childProps;
             return React.cloneElement(child, {
               ...child.props,
               onClick: (n) => {
-                doSomething(n)
+                doSomething(n);
               },
               selectImage: (n: number) => {
-                imageSelector(n)
+                imageSelector(n);
               },
               showSlide,
               count,
               currentSlide,
               fade
-            })
+            });
           }
-          return null
+          return null;
         })}
       </div>
     </ErrorBoundary>
-  )
-}
+  );
+};
 
 const CarouselItem = ({
   children,
@@ -163,8 +154,8 @@ const CarouselItem = ({
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
 const CarouselControl = ({
   children,
@@ -172,11 +163,11 @@ const CarouselControl = ({
   ...props
 }: CarouselProps): JSX.Element => {
   function clickPrev() {
-    onClick(-1)
+    onClick(-1);
   }
 
   function clickNext() {
-    onClick(1)
+    onClick(1);
   }
 
   return (
@@ -188,16 +179,15 @@ const CarouselControl = ({
         &#10095;
       </a>
     </>
-  )
-}
+  );
+};
 
 const CarouselIndicators = ({
   count,
   currentSlide,
   selectImage
 }: CarouselProps): JSX.Element => {
-  console.log('count in indicator', count)
-  let elementArray = []
+  let elementArray = [];
   for (let i = 0; i < count; i++) {
     if (i === currentSlide) {
       elementArray.push(
@@ -206,11 +196,11 @@ const CarouselIndicators = ({
           key={i}
           className='dot active'
         ></span>
-      )
+      );
     } else {
       elementArray.push(
         <span key={i} onClick={() => selectImage(i)} className='dot'></span>
-      )
+      );
     }
   }
   return (
@@ -226,29 +216,28 @@ const CarouselIndicators = ({
     >
       {elementArray}
     </div>
-  )
-}
+  );
+};
 
 const CarouselImage = ({
   imageSource,
   showSlide
 }: CarouselProps): JSX.Element => {
-  return <img className='img' src={imageSource} style={{ width: '100%' }} />
-}
+  return <img className='img' src={imageSource} style={{ width: '100%' }} />;
+};
 
 const CarouselCaption = ({
   children,
   imageSource,
   ...props
 }: CarouselProps): JSX.Element => {
-  console.log(props)
-  return <div className='text'>{children}</div>
-}
+  return <div className='text'>{children}</div>;
+};
 
 const useCounter = () => {
-  const [count, setCount] = useState(0)
-  return {}
-}
+  const [count, setCount] = useState(0);
+  return {};
+};
 
 export {
   Carousel,
@@ -258,4 +247,4 @@ export {
   CarouselImage,
   CarouselCaption,
   useCounter
-}
+};
