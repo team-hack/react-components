@@ -21,6 +21,28 @@ export default {
         type: 'select',
         options: ['left', 'center', 'right']
       }
+    },
+    position: {
+      control: {
+        type: 'select',
+        options: ['top-left', 'top-right', 'bottom-left', 'bottom-right']
+      }
+    },
+    width: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 1000,
+        step: 10
+      }
+    },
+    imageHeight: {
+      control: {
+        type: 'range',
+        min: 0,
+        max: 1000,
+        step: 10
+      }
     }
   }
 };
@@ -29,26 +51,26 @@ export const Basic = (args) => (
   <Card {...args}>
     <CardImage {...args} />
     <CardBody {...args}>
-      <h3>this is a test</h3>
-      <p>you are the text. you are the text. you are the text</p>
-      <button>Press Me</button>
+      <h3>What is Team Hack?</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
     </CardBody>
   </Card>
 );
 
 Basic.args = {
-  align: ['left', 'center', 'right'],
-  imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/monarch.png',
-  width: '300'
+  align: 'left',
+  imageSource: '',
+  width: 300,
+  imageHeight: 200
 };
 
 export const HeaderAndFooter = (args) => (
   <Card {...args}>
     <CardImageContainer>
       <CardImage {...args} />
-      <CardImageOverlay position='bottom-right'>
-        <p>hello</p>
-        <p>how are you</p>
+      <CardImageOverlay {...args}>
+        <p>Title</p>
+        <p>Sub Title</p>
       </CardImageOverlay>
     </CardImageContainer>
 
@@ -62,25 +84,26 @@ export const HeaderAndFooter = (args) => (
 );
 
 HeaderAndFooter.args = {
-  align: ['left', 'center', 'right'],
-  imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/sails.png',
-  width: '300'
+  align: 'left',
+  imageSource: '',
+  width: '300',
+  imageHeight: 200,
+  position: 'top-right'
 };
 
 export const ImageOverlay = (args) => (
   <Card {...args}>
     <div style={{ position: 'relative' }}>
       <CardImage {...args} />
-      <CardImageOverlay position='bottom-left'>
-        <h3>hello</h3>
-        <p>over the image</p>
+      <CardImageOverlay {...args}>
+        <h3>Title</h3>
+        <p>Sub title</p>
       </CardImageOverlay>
     </div>
 
     <CardBody>
-      <h4>this is a test</h4>
-      <p>you are the text</p>
-      <button>Press Me</button>
+      <h4>What is Team Hack?</h4>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
     </CardBody>
 
     <ListGroup>
@@ -91,8 +114,10 @@ export const ImageOverlay = (args) => (
 );
 
 ImageOverlay.args = {
-  imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/sails.png',
-  width: '300'
+  imageSource: '',
+  width: '300',
+  imageHeight: 200,
+  position: 'bottom-left'
 };
 
 export const List = (args) => (
@@ -106,7 +131,7 @@ export const List = (args) => (
 );
 
 List.args = {
-  align: ['left', 'center', 'right'],
+  align: 'left',
   width: '300'
 };
 
@@ -119,5 +144,22 @@ export const Combination = (args) => (
 );
 
 Combination.args = {
-  imageSource: 'https://homepages.cae.wisc.edu/~ece533/images/sails.png'
+  imageSource: '',
+  width: '300',
+  imageHeight: 200,
+  align: 'left'
+};
+
+export const ImageBottom = (args) => (
+  <Card {...args}>
+    <CardHeader text='Header' />
+    <CardImage {...args} />
+  </Card>
+);
+
+ImageBottom.args = {
+  align: 'left',
+  imageSource: '',
+  imageHeight: 200,
+  width: 300
 };
