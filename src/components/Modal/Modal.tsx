@@ -3,14 +3,21 @@ import ReactDom from 'react-dom';
 import './modal.scss';
 
 interface ModalProps {
-  children?: any;
-  onClose?: any;
-  open?: any;
-  heightProp?: any;
-  style?: any;
-  closeModal?: any;
-  text?: any;
-  staticBackground?: any;
+  children?: JSX.Element[];
+  onClose?: () => void;
+  open: boolean;
+  staticBackground?: boolean;
+}
+
+interface ModalElementsProps {
+  children: JSX.Element | JSX.Element[];
+  text?: string;
+  align?: string;
+}
+
+interface ModalHeaderProps {
+  text: string;
+  closeModal?: () => void;
 }
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
@@ -38,23 +45,15 @@ const Modal = ({
   children,
   onClose,
   open,
-  heightProp,
   staticBackground
 }: ModalProps): JSX.Element => {
   const [showModal, setShowModal] = useState(null);
   const wrapperRef = useRef(null);
 
-  // useOutsideAlerter(wrapperRef);
-
   useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
     if (!staticBackground) {
       function handleClickOutside(event) {
         if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-          // alert('You clicked outside of me!');
-          // setShowModal(false);
           onClose();
           setShowModal(null);
         }
@@ -69,18 +68,14 @@ const Modal = ({
   }, [wrapperRef]);
 
   useEffect(() => {
-    console.log('open', open, showModal);
     if (open === true && showModal === null) {
-      console.log('openA');
       setShowModal(true);
     } else if (open === false && showModal === true) {
-      // setShowModal(false);
       setShowModal(null);
     }
   }, [open]);
 
   function closeModal() {
-    // setShowModal(false);
     onClose();
     setShowModal(null);
   }
@@ -89,11 +84,7 @@ const Modal = ({
     ? ReactDom.createPortal(
         <ErrorBoundary>
           <div className='modal-background'>
-            <div
-              ref={wrapperRef}
-              className={`modal position-${heightProp}`}
-              style={{ position: 'absolute', right: '10%' }}
-            >
+            <div ref={wrapperRef} className='modal'>
               {React.Children.map(children, (child, i) => {
                 if (child.type === ModalHeader) {
                   return React.cloneElement(child, {
@@ -111,14 +102,10 @@ const Modal = ({
     : null;
 };
 
-const ModalHeader = ({
-  children,
-  closeModal,
-  text
-}: ModalProps): JSX.Element => {
+const ModalHeader = ({ closeModal, text }: ModalHeaderProps): JSX.Element => {
   return (
     <div className='modal-header'>
-      <strong className='mr-auto'>{text}</strong>
+      <strong>{text}</strong>
       <span className='modal-close' onClick={() => closeModal()}>
         &times;
       </span>
@@ -126,12 +113,15 @@ const ModalHeader = ({
   );
 };
 
-const ModalBody = ({ children }: ModalProps): JSX.Element => {
-  return <div className='modal-body'>{children}</div>;
+const ModalBody = ({ children, align }: ModalElementsProps): JSX.Element => {
+  console.log('align in body', align);
+  const alignClass = align ? align : '';
+  return <div className={`modal-body ${alignClass}`}>{children}</div>;
 };
 
-const ModalFooter = ({ children }: ModalProps): JSX.Element => {
-  return <div className='modal-footer'>{children}</div>;
+const ModalFooter = ({ children, align }: ModalElementsProps): JSX.Element => {
+  const alignClass = align ? align : '';
+  return <div className={`modal-footer ${alignClass}`}>{children}</div>;
 };
 
 export { Modal, ModalHeader, ModalBody, ModalFooter };

@@ -2,9 +2,11 @@
   font-family: Arial, Helvetica, sans-serif;
   position: absolute;
   top: 50%;
+
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid rgb(211, 211, 211);
+  transition: all 2s ease;
   width: 45%;
   border-radius: 8px;
   display: flex;
@@ -58,4 +60,16 @@
   padding: 1rem;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+
+.center {
+  text-align: center;
+}
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
 }

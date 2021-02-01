@@ -6,17 +6,16 @@ export default {
   component: Modal,
   title: 'Modal',
   argTypes: {
-    color: { control: 'color' },
-    striped: {
+    align: {
       control: {
         type: 'select',
-        options: ['true', 'false']
+        options: ['left', 'center', 'right']
       }
     },
-    animated: {
+    staticBackground: {
       control: {
         type: 'select',
-        options: ['true', 'false']
+        options: [true, false]
       }
     }
   }
@@ -24,9 +23,7 @@ export default {
 
 export const Basic = (args) => {
   const [showModal, setShowModal] = useState(true);
-  useEffect(() => {
-    console.log('SHOW', showModal);
-  }, [showModal]);
+  useEffect(() => {}, [showModal]);
 
   function processOnClick() {
     setShowModal(false);
@@ -39,7 +36,6 @@ export const Basic = (args) => {
   }
 
   function reopenModal() {
-    console.log('press to reopen');
     setShowModal(true);
   }
   return (
@@ -65,7 +61,7 @@ export const Basic = (args) => {
       <Button label='Open Modal' primary={true} onClick={() => reopenModal()} />
       <Modal open={showModal} onClose={() => cancel()}>
         <ModalHeader text='Do you want to continue?' />
-        <ModalBody>
+        <ModalBody {...args}>
           <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rerum
             consequatur accusamus fuga iure laudantium, inventore aliquam animi
@@ -73,7 +69,7 @@ export const Basic = (args) => {
             placeat dolorum voluptate.
           </p>
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter {...args}>
           <div>
             <Button
               primary={true}
@@ -88,13 +84,13 @@ export const Basic = (args) => {
   );
 };
 
-Basic.args = {};
+Basic.args = {
+  align: 'left'
+};
 
 export const StaticBackground = (args) => {
   const [showModal, setShowModal] = useState(true);
-  useEffect(() => {
-    console.log('SHOW', showModal);
-  }, [showModal]);
+  useEffect(() => {}, [showModal]);
 
   function processOnClick() {
     setShowModal(false);
@@ -107,7 +103,6 @@ export const StaticBackground = (args) => {
   }
 
   function reopenModal() {
-    console.log('press to reopen');
     setShowModal(true);
   }
   return (
@@ -156,4 +151,6 @@ export const StaticBackground = (args) => {
   );
 };
 
-StaticBackground.args = {};
+StaticBackground.args = {
+  align: 'left'
+};
