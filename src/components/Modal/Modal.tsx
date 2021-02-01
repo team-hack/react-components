@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDom from 'react-dom';
 import './modal.scss';
 
@@ -8,6 +8,8 @@ interface ModalProps {
   open?: any;
   heightProp?: any;
   style?: any;
+  closeModal?: any;
+  text?: any;
 }
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
@@ -31,41 +33,94 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   }
 }
 
+function useOutsideAlerter(ref) {
+  useEffect(() => {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (ref.current && !ref.current.contains(event.target)) {
+        alert('You clicked outside of me!');
+        return 'yessss';
+      }
+    }
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [ref]);
+}
+
 const Modal = ({
   children,
   onClose,
   open,
   heightProp
 }: ModalProps): JSX.Element => {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(null);
+  const wrapperRef = useRef(null);
+
+  // useOutsideAlerter(wrapperRef);
 
   useEffect(() => {
-    if (open === true) {
+    /**
+     * Alert if clicked on outside of element
+     */
+    function handleClickOutside(event) {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        // alert('You clicked outside of me!');
+        setShowModal(false);
+      }
+    }
+    // Bind the event listener
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      // Unbind the event listener on clean up
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [wrapperRef]);
+
+  useEffect(() => {
+    console.log('open', open, showModal);
+    if (open === true && showModal === null) {
       setShowModal(true);
     }
-  });
-  // function closeModal(e) {
+    if (open === false && showModal === true) {
+      setShowModal(false);
+    }
+  }, [open]);
+  function closeModal() {
+    setShowModal(!showModal);
+  }
 
-  //   setShowModal(!showModal);
-  // }
-
-  return open
+  return showModal
     ? ReactDom.createPortal(
         <ErrorBoundary>
-          <div
-            className={`modal position-${heightProp}`}
-            style={{ position: 'absolute', right: '10%' }}
-          >
-            <div className='modal-header'>
-              <strong className='mr-auto'>Bootstrap</strong>
-              <span
-                className='modal-close'
-                onClick={() => setShowModal(!showModal)}
-              >
-                &times;
-              </span>
+          <div className='modal-background'>
+            <div
+              ref={wrapperRef}
+              className={`modal position-${heightProp}`}
+              style={{ position: 'absolute', right: '10%' }}
+            >
+              {React.Children.map(children, (child, i) => {
+                if (child.type === ModalHeader) {
+                  return React.cloneElement(child, {
+                    ...child.props,
+                    closeModal
+                  });
+                }
+                return child;
+              })}
+              {/* <div className='modal-header'>
+                <strong className='mr-auto'>Bootstrap</strong>
+                <span className='modal-close' onClick={() => closeModal()}>
+                  &times;
+                </span>
+              </div> */}
+              {/* <div className='modal-body'>{children}</div> */}
             </div>
-            <div className='modal-body'>{children}</div>
           </div>
         </ErrorBoundary>,
         document.body
@@ -73,4 +128,28 @@ const Modal = ({
     : null;
 };
 
-export { Modal };
+const ModalHeader = ({
+  children,
+  closeModal,
+  text
+}: ModalProps): JSX.Element => {
+  console.log('this is close modal', closeModal);
+  return (
+    <div className='modal-header'>
+      <strong className='mr-auto'>{text}</strong>
+      <span className='modal-close' onClick={() => closeModal()}>
+        &times;
+      </span>
+    </div>
+  );
+};
+
+const ModalBody = ({ children }: ModalProps): JSX.Element => {
+  return <div className='modal-body'>{children}</div>;
+};
+
+const ModalFooter = ({ children }: ModalProps): JSX.Element => {
+  return <div className='modal-footer'>{children}</div>;
+};
+
+export { Modal, ModalHeader, ModalBody, ModalFooter };
