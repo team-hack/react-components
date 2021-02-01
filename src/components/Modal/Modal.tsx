@@ -10,6 +10,7 @@ interface ModalProps {
   style?: any;
   closeModal?: any;
   text?: any;
+  staticBackground?: any;
 }
 
 class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
@@ -33,31 +34,12 @@ class ErrorBoundary extends React.Component<{}, { hasError: boolean }> {
   }
 }
 
-function useOutsideAlerter(ref) {
-  useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
-    function handleClickOutside(event) {
-      if (ref.current && !ref.current.contains(event.target)) {
-        alert('You clicked outside of me!');
-        return 'yessss';
-      }
-    }
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, [ref]);
-}
-
 const Modal = ({
   children,
   onClose,
   open,
-  heightProp
+  heightProp,
+  staticBackground
 }: ModalProps): JSX.Element => {
   const [showModal, setShowModal] = useState(null);
   const wrapperRef = useRef(null);
@@ -68,31 +50,39 @@ const Modal = ({
     /**
      * Alert if clicked on outside of element
      */
-    function handleClickOutside(event) {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        // alert('You clicked outside of me!');
-        setShowModal(false);
+    if (!staticBackground) {
+      function handleClickOutside(event) {
+        if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+          // alert('You clicked outside of me!');
+          // setShowModal(false);
+          onClose();
+          setShowModal(null);
+        }
       }
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
     }
-    // Bind the event listener
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      // Unbind the event listener on clean up
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   }, [wrapperRef]);
 
   useEffect(() => {
     console.log('open', open, showModal);
     if (open === true && showModal === null) {
+      console.log('openA');
       setShowModal(true);
-    }
-    if (open === false && showModal === true) {
-      setShowModal(false);
+    } else if (open === false && showModal === true) {
+      // setShowModal(false);
+      setShowModal(null);
     }
   }, [open]);
+
   function closeModal() {
-    setShowModal(!showModal);
+    // setShowModal(false);
+    onClose();
+    setShowModal(null);
   }
 
   return showModal
@@ -113,13 +103,6 @@ const Modal = ({
                 }
                 return child;
               })}
-              {/* <div className='modal-header'>
-                <strong className='mr-auto'>Bootstrap</strong>
-                <span className='modal-close' onClick={() => closeModal()}>
-                  &times;
-                </span>
-              </div> */}
-              {/* <div className='modal-body'>{children}</div> */}
             </div>
           </div>
         </ErrorBoundary>,
@@ -133,7 +116,6 @@ const ModalHeader = ({
   closeModal,
   text
 }: ModalProps): JSX.Element => {
-  console.log('this is close modal', closeModal);
   return (
     <div className='modal-header'>
       <strong className='mr-auto'>{text}</strong>

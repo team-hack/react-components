@@ -24,7 +24,9 @@ export default {
 
 export const Basic = (args) => {
   const [showModal, setShowModal] = useState(true);
-  // useEffect(() => {}, [showModal]);
+  useEffect(() => {
+    console.log('SHOW', showModal);
+  }, [showModal]);
 
   function processOnClick() {
     setShowModal(false);
@@ -34,6 +36,11 @@ export const Basic = (args) => {
   function cancel() {
     setShowModal(false);
     alert('Cancel button pressed');
+  }
+
+  function reopenModal() {
+    console.log('press to reopen');
+    setShowModal(true);
   }
   return (
     <div>
@@ -55,7 +62,8 @@ export const Basic = (args) => {
         culpa praesentium alias eveniet cum possimus! Sit saepe cupiditate
         adipisci optio dolorem qui.
       </p>
-      <Modal open={showModal}>
+      <Button label='Open Modal' primary={true} onClick={() => reopenModal()} />
+      <Modal open={showModal} onClose={() => cancel()}>
         <ModalHeader text='Do you want to continue?' />
         <ModalBody>
           <p>
@@ -80,11 +88,72 @@ export const Basic = (args) => {
   );
 };
 
-Basic.args = {
-  striped: 'false',
-  width: '25%',
-  animated: 'false',
-  label: '',
-  color: 'rgb(43, 194, 83)',
-  height: '25px'
+Basic.args = {};
+
+export const StaticBackground = (args) => {
+  const [showModal, setShowModal] = useState(true);
+  useEffect(() => {
+    console.log('SHOW', showModal);
+  }, [showModal]);
+
+  function processOnClick() {
+    setShowModal(false);
+    alert('Accept button pressed');
+  }
+
+  function cancel() {
+    setShowModal(false);
+    alert('Cancel button pressed');
+  }
+
+  function reopenModal() {
+    console.log('press to reopen');
+    setShowModal(true);
+  }
+  return (
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis ut
+        est repellendus ab. Eaque vero ipsa asperiores provident, sed dolore
+        iste error nemo voluptatum, deserunt vitae totam ea reprehenderit
+        voluptates.
+      </p>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid
+        voluptate consequatur earum deleniti mollitia aliquam, quae distinctio
+        culpa praesentium alias eveniet cum possimus! Sit saepe cupiditate
+        adipisci optio dolorem qui.
+      </p>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid
+        voluptate consequatur earum deleniti mollitia aliquam, quae distinctio
+        culpa praesentium alias eveniet cum possimus! Sit saepe cupiditate
+        adipisci optio dolorem qui.
+      </p>
+      <Button label='Open Modal' primary={true} onClick={() => reopenModal()} />
+      <Modal open={showModal} onClose={() => cancel()} staticBackground={true}>
+        <ModalHeader text='Do you want to continue?' />
+        <ModalBody>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quae rerum
+            consequatur accusamus fuga iure laudantium, inventore aliquam animi
+            facilis soluta, exercitationem nihil quasi blanditiis ex aut error
+            placeat dolorum voluptate.
+          </p>
+        </ModalBody>
+        <ModalFooter>
+          <div>
+            <Button
+              primary={true}
+              label='Accept'
+              onClick={() => processOnClick()}
+            />
+            <Button primary={false} label='Cancel' onClick={() => cancel()} />
+          </div>
+        </ModalFooter>
+      </Modal>
+    </div>
+  );
 };
+
+StaticBackground.args = {};
