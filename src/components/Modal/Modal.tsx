@@ -68,9 +68,9 @@ const Modal = ({
   }, [wrapperRef]);
 
   useEffect(() => {
-    if (open === true && showModal === null) {
+    if (open && !showModal) {
       setShowModal(true);
-    } else if (open === false && showModal === true) {
+    } else if (!open && showModal) {
       setShowModal(null);
     }
   }, [open]);
@@ -114,7 +114,6 @@ const ModalHeader = ({ closeModal, text }: ModalHeaderProps): JSX.Element => {
 };
 
 const ModalBody = ({ children, align }: ModalElementsProps): JSX.Element => {
-  console.log('align in body', align);
   const alignClass = align ? align : '';
   return <div className={`modal-body ${alignClass}`}>{children}</div>;
 };
