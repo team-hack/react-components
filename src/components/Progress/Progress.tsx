@@ -1,5 +1,5 @@
 import React from 'react';
-import './progress.css';
+import './progress.scss';
 
 interface ProgressProps {
   children?: string;
