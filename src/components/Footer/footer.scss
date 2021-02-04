@@ -28,24 +28,25 @@ footer {
     justify-content: flex-start;
   }
   /* Setting column widths with flex display */
-  ul.column {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    justify-content: flex-start;
-  }
-  ul li {
-    flex: 1 0 25%;
-  }
-
-  ul.column-1 li {
-    flex: 1 0 100%;
-  }
-  ul.column-2 li {
-    flex: 0 0 50%;
-  }
-  ul.column-3 li {
-    flex: 0 0 33.33%;
+  ul {
+    li {
+      flex: 1 0 25%;
+    }
+    &.column {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      justify-content: flex-start;
+    }
+    &.column-1 li {
+      flex: 1 0 100%;
+    }
+    &.column-2 li {
+      flex: 0 0 50%;
+    }
+    &.column-3 li {
+      flex: 0 0 33.33%;
+    }
   }
 }
 
