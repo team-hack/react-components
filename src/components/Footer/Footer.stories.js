@@ -17,16 +17,16 @@ export default {
         },
     },
     args: {
-        columns: 1,
+        columns: 3,
         linksList: [
-            { ...FooterLinkStories.Default.args.FooterLink, id: '1', title: 'About', url: '#0'},
-            { ...FooterLinkStories.Default.args.FooterLink, id: '2', title: 'Projects', url: '#0'},
-            { ...FooterLinkStories.Default.args.FooterLink, id: '3', title: 'Blog', url: '#0'},
-            { ...FooterLinkStories.Default.args.FooterLink, id: '4', title: 'Contact', url: '#0'},
-            { ...FooterLinkStories.Default.args.FooterLink, id: '5', title: 'Forum', url: '#0'},
-            { ...FooterLinkStories.Default.args.FooterLink, id: '6', title: 'Archive', url: '#0'},
-            { ...FooterLinkStories.Default.args.FooterLink, id: '7', title: 'Gallery', url: '#0'},
-            { ...FooterLinkStories.Default.args.FooterLink, id: '8', title: 'Foo', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '1', title: 'About Us', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '2', title: 'Terms of Service', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '3', title: 'Code of Conduct', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '4', title: 'Contact Us', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '5', title: 'Chat', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '6', title: 'Meetups', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '7', title: 'Team Hack', url: '#0'},
+            { ...FooterLinkStories.Default.args.FooterLink, id: '8', title: 'Mentorships', url: '#0'},
         ],
     },
     
@@ -46,6 +46,7 @@ Dark.args = {
 
 export const OneColumn = Template.bind({})
 OneColumn.args = {
+    columns: 1,
 }
 
 export const TwoColumn = Template.bind({})
