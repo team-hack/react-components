@@ -1,0 +1,1 @@
+export { Jumbotron } from './Jumbotron';
