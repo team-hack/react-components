@@ -1,0 +1,67 @@
+footer {
+  color: #fff;
+  background-color: #4e4e4e;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 35px 66px;
+  a {
+    color: #fff;
+    display: block;
+    margin: 5px;
+    padding: 5px;
+    width: 100%;
+  }
+  .row {
+    padding: 5px 0;
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+  .flex {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .flex-justify-left {
+    justify-content: flex-start;
+  }
+  /* Setting column widths with flex display */
+  ul {
+    li {
+      flex: 1 0 25%;
+    }
+    &.column {
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      justify-content: flex-start;
+    }
+    &.column-1 li {
+      flex: 1 0 100%;
+    }
+    &.column-2 li {
+      flex: 0 0 50%;
+    }
+    &.column-3 li {
+      flex: 0 0 33.33%;
+    }
+  }
+}
+
+@media (min-width: 640px) {
+  /* Responsive Default for small view */
+  .sm\:center {
+    text-align: center;
+  }
+  .sm\:left {
+    text-align: left;
+  }
+  .sm\:right {
+    text-align: right;
+  }
+  .sm\:flex-justify-left {
+    justify-content: flex-start;
+  }
+}
